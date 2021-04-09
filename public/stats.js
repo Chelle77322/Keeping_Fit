@@ -1,5 +1,5 @@
 function generatePalette() {
-  const arr = [
+  const colorArray = [
     '#003f5c',
     '#2f4b7c',
     '#665191',
@@ -18,7 +18,7 @@ function generatePalette() {
     'ffa600',
   ];
 
-  return arr;
+  return colorArray;
 }
 
 function populateChart(data) {
@@ -194,8 +194,8 @@ function calculateTotalWeight(data) {
 function workoutNames(data) {
   let workouts = [];
 
-  data.forEach((workout) => {
-    workout.exercises.forEach((exercise) => {
+  data.forEach((workouts) => {
+    workouts.exercises.forEach((exercise) => {
       workouts.push(exercise.name);
     });
   });
@@ -205,4 +205,4 @@ function workoutNames(data) {
 }
 
 // get all workout data from back-end
-API.getWorkoutsInRange().then(populateChart);
+callAPI.getWorkoutsInRange().then(populateChart);

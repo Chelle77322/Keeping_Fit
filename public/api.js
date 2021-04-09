@@ -1,4 +1,4 @@
-const API = {
+const callAPI = {
   async getLastWorkout() {
     let result;
     try {
@@ -13,7 +13,7 @@ const API = {
   async addExercise(data) {
     const id = location.search.split("=")[1];
 
-    const result = await fetch("/api/workouts/" + id, {
+    const result = await fetch("api/workouts/" + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
