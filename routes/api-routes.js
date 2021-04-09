@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const db = require("../models");
 
-router.get("/api/workouts", (request, result) => {
-  db.Keeping_Fit.find({})
+router.get("./api/workouts", (request, result) => {
+  db.Keeping_Fit.find({workouts})
     .sort({ date: -1 })
     .then((workouts) => {
       result.status(200).json(workouts);

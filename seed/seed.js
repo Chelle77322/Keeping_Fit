@@ -1,10 +1,6 @@
 let mongoose = require('mongoose');
 let db = require("../models");
 
-mongoose.connect("mongodb://localhost/keeping_fit", {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
 
 let workouts = [
   {

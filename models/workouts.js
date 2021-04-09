@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const exercisesSchema = new Schema({
   type: {
     type: String,
-    enum: ["resistance", "cardio", "ballet barre","ashtanga yoga"],
-    required: "Valid options are 'resistance' or 'cardio' or 'ballet barre' or 'ashtanga yoga'",
+    enum: ["resistance", "cardio"],
+    required: "Valid options are 'resistance' or 'cardio'",
   },
   name: {
     type: String,
@@ -39,7 +39,7 @@ function isRequired(field) {
     if (field == "distance") {
       return this.type === "cardio";
     } else {
-      return this.type === "resistance", "ballet barre", "ashtanga yoga";
+      return this.type === "resistance";
     } 
   };
 }
@@ -67,5 +67,7 @@ workoutsSchema.virtual("totalDuration").get(function () {
 });
 
 const workouts = mongoose.model("workouts", workoutsSchema);
+console.log(exercisesSchema);
+console.log(workoutsSchema);
 
 module.exports = workouts;
