@@ -24,7 +24,7 @@ const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env
 
 console.log(connectionString);
 require('./seed/seed');
-mongoose.Connection = require(connectionString);
+
 
 //use routes
 app.use(require('./routes/api-routes'));
