@@ -2,6 +2,8 @@
 const express = require('express');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const dotenv = require("dotenv");
+dotenv.config()
 
 //set port
 const PORT = process.env.PORT || 3333;
@@ -18,16 +20,9 @@ app.use(express.json());
 //use static files
 app.use(express.static("public"));
 
-mongoose.connect(
-    process.env.MONGODB_URI ||"mongodb://localhost/Keeping_Fit",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false
-    }
-  );
+const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
 
+console.log(connectionString);
 require('./seed/seed');
 
 //use routes
