@@ -40,8 +40,8 @@ function isRequired(field) {
     if (field == "distance") {
       return this.type === "cardio";
     } else {
-      return this.type === "resistance";
-    }
+      return this.type === "resistance", "ballet barre", "ashtanga yoga";
+    } 
   };
 }
 
@@ -67,6 +67,6 @@ workoutsSchema.virtual("totalDuration").get(function () {
   return totalDuration;
 });
 
-const workouts = mongoose.model("Workout", workoutsSchema);
+const workouts = mongoose.model("workouts", workoutsSchema);
 
 module.exports = workouts;

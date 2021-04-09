@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 mongoose.connect(
-    process.env.MONGODB_URI || 'mongodb://localhost/keeping_fit',
+    process.env.MONGODB_URI || 'mongodb://localhost/Keeping_Fit',
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -28,7 +28,7 @@ mongoose.connect(
     }
   );
 
-//require('./seeders/seed')
+require('./seed/seed');
 
 //use routes
 require('./routes/api-routes')(app)
