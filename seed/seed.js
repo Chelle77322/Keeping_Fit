@@ -2,6 +2,7 @@ let mongoose = require('mongoose');
 let db = require("../models");
 
 
+
 let workouts = [
   {
     day: new Date().setDate(new Date().getDate()-10),
@@ -120,13 +121,13 @@ let workouts = [
   }
 ];
 
-//db.Keeping_Fit.deleteMany({})
-  //.then(() => db.Keeping_Fit.collection.insertMany(workouts))
-  //.then(data => {
-    //console.log(data.result.n + " records inserted!");
-   // process.exit(0);
-  //})
-  //.catch(error => {
-    //console.error(error);
-    //process.exit(1);
-  //});
+db.workouts.deleteMany({})
+  .then(() => db.workouts.collection.insertMany(workouts))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+   process.exit(0);
+  })
+  .catch(error => {
+    console.error(error);
+    process.exit(1);
+  });
