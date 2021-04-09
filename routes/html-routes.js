@@ -6,11 +6,11 @@ router.get("/", (request, result) => {
 });
 
 router.get("/stats", (request, result) => {
-  result.sendFile(path.join(__dirname + "/../public/stats.html"));
+  result.sendFile(path.join(__dirname + "/public/stats.html"));
 });
 
 router.get("/exercise", (request, result) => {
-  result.sendFile(path.join(__dirname + "/../public/exercise.html"));
+  result.sendFile(path.join(__dirname + "/public/exercise.html"));
 });
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const db = require("../models");
 
-router.get("./api/workouts", (request, result) => {
+router.get("/api/workouts", (request, result) => {
   db.Keeping_Fit.find({workouts})
     .sort({ date: -1 })
     .then((workouts) => {
