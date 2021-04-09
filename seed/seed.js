@@ -124,13 +124,13 @@ let workouts = [
   }
 ];
 
-db.Keeping_Fit.deleteMany({})
-  .then(() => db.Keeping_Fit.collection.insertMany(workouts))
-  .then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-  })
-  .catch(error => {
-    console.error(error);
-    process.exit(1);
-  });
+//db.Keeping_Fit.deleteMany({})
+  //.then(() => db.Keeping_Fit.collection.insertMany(workouts))
+  //.then(data => {
+    //console.log(data.result.n + " records inserted!");
+   // process.exit(0);
+  //})
+  //.catch(error => {
+    //console.error(error);
+    //process.exit(1);
+  //});
