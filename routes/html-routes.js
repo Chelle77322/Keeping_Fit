@@ -3,17 +3,21 @@ const path = require("path");
 console.log(path);
 
 router.get("/", (request, result) => {
-  result.sendFile(path.join("./index.html"));
+  result.sendFile(path.join(__dirname + "./index.html"));
+  console.log(router);
+  console.log(path);
 });
 
-router.get("/stats", (request, result) => {
-  result.sendFile(path.join(__dirname + "stats.html"));
-  console.log(result);
+router.get("./stats", (request, result) => {
+  result.sendFile(path.join(__dirname + "./stats.html"));
+  console.log(router);
+  console.log(path);
 });
 
-router.get("/exercise", (request, result) => {
-  result.sendFile(path.join("./exercise.html"));
-  console.log(result);
+router.get("./exercise", (request, result) => {
+  result.sendFile(path.join(__dirname + "./exercise.html"));
+  console.log(router);
+  console.log(path);
 });
-console.log(router);
+
 module.exports = router;
