@@ -14,7 +14,7 @@ router.get("/api/workouts", (request, result) => {
     });
 });
 
-router.get("/api/workouts/range", (request, result) => {
+router.get("./api/workouts/range", (request, result) => {
   db.workouts.find({})
     .sort({ date: -1 })
     .then((workouts) => {
@@ -25,10 +25,11 @@ router.get("/api/workouts/range", (request, result) => {
     });
 });
 
-router.post("/api/workouts", (request, result) => {
+router.post("./api/workouts", (request, result) => {
   db.workouts.create(request.body)
     .then((workouts) => {
       result.status(201).json(workouts);
+      console.log(workouts);
     })
     .catch((error) => {
       result.status(400).json(error);
@@ -40,11 +41,12 @@ router.put("/api/workouts/:id", async (request, result) => {
   const body = request.body;
  
   db.workouts.updateOne(
-    { _id: id },
+    {_id: id },
     {
       $push: {
         exercises: { ...body },
       },
+      
     }
   )
     .then((workouts) => {

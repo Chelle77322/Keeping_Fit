@@ -69,11 +69,13 @@ function validateInputs() {
     if (repsInput.value.trim() === "") {
       isValid = false;
     }
+    console.log(repsInput.value.trim());
 
     if (resistanceDurationInput.value.trim() === "") {
       isValid = false;
     }
-  } else if (workoutType === "cardio") {
+    console.log(resistanceDurationInput.value.trim());
+    } else if (workoutType === "cardio") {
     if (cardioNameInput.value.trim() === "") {
       isValid = false;
     }
@@ -81,6 +83,7 @@ function validateInputs() {
     if (durationInput.value.trim() === "") {
       isValid = false;
     }
+    console.log(durationInput.value.trim());
 
     if (distanceInput.value.trim() === "") {
       isValid = false;
@@ -117,6 +120,8 @@ async function handleFormSubmit(event) {
 
   await callAPI.addExercise(workoutData);
   clearInputs();
+  console.log(workoutData);
+  console.log(callAPI);
   toast.classList.add("success");
 }
 

@@ -4,7 +4,8 @@ const callAPI = {
     try {
       result = await fetch("/api/workouts");
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      console.log(getLastWorkout);
     }
     const json = await result.json();
 
