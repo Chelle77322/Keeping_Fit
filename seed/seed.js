@@ -1,17 +1,22 @@
 let mongoose = require('mongoose');
 let db = require("../models");
 
-let workouts = [
+const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
+
+console.log(connectionString);
+mongoose.connect({uri_decode_auth: true}+connectionString);
+
+let seedWorkouts = [
   {
     day: new Date().setDate(new Date().getDate()-10),
     exercises: [
       {
         type: "resistance",
-        name: "Bicep Curl",
-        duration: 20,
-        weight: 100,
-        reps: 10,
-        sets: 4
+        name: "Lateral Pulldown",
+        duration: 10,
+        weight: 75,
+        reps: 15,
+        sets: 3
       }
     ]
   },
@@ -20,9 +25,9 @@ let workouts = [
     exercises: [
       {
         type: "resistance",
-        name: "Lateral Pull",
-        duration: 20,
-        weight: 300,
+        name: "Shoulder Press",
+        duration: 7,
+        weight: 45,
         reps: 10,
         sets: 4
       }
@@ -34,10 +39,10 @@ let workouts = [
       {
         type: "resistance",
         name: "Push Press",
-        duration: 25,
+        duration: 15,
         weight: 185,
-        reps: 8,
-        sets: 4
+        reps: 5,
+        sets: 2
       }
     ]
   },
@@ -119,13 +124,13 @@ let workouts = [
   }
 ];
 
-//db.workouts.deleteMany({workouts})
- // .then(() => db.workouts.collection.insertMany())
- // .then(data => {
- //   console.log(data.result.n + " records inserted!");
-//   process.exit(0);
-//  })
-//  .catch(error => {
-//    console.error(error);
-//    process.exit(1);
-//  });
+
+db.workouts.deleteMany({})
+ .then(() => db.workouts.collection.insertMany(seedWorkouts))
+ .then(data => {
+   console.log(data.result.n + " records inserted!");
+process.exit(0);
+ }).catch(error => {
+console.error(error);
+ process.exit(1);
+});
