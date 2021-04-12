@@ -53,7 +53,13 @@ let seedWorkouts = [
         type: "cardio",
         name: "Running",
         duration: 25,
-        distance: 4
+        distance: 4,
+      },
+      {
+        type: "cardio",
+        name: "Jogging",
+        duration: 60,
+        distance: 10
       }
     ]
   },
@@ -125,12 +131,12 @@ let seedWorkouts = [
 ];
 
 
-//db.workouts.deleteMany({})
- //.then(() => db.workouts.collection.insertMany(seedWorkouts))
- //.then(data => {
- //  console.log(data.result.n + " records inserted!");
-//process.exit(0);
-// }).catch(error => {
-//console.error(error);
-// process.exit(1);
-//});
+db.workouts.deleteMany({})
+ .then(() => db.workouts.collection.insertMany(seedWorkouts))
+ .then(data => {
+   console.log(data.result.n + " records inserted!");
+process.exit(0);
+ }).catch(error => {
+console.error(error);
+ process.exit(1);
+});
