@@ -3,15 +3,17 @@ const express = require('express');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const dotenv = require("dotenv");
-dotenv.config()
+dotenv.config();
 
 const app = express();
+const compression = require('compression');
 
 //set port
 const PORT = process.env.PORT || 3333;
 
 //use logger
 app.use(logger("dev"));
+app.use(compression());
 
 //parser
 app.use(express.urlencoded({ extended: true }));
