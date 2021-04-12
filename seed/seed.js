@@ -1,10 +1,10 @@
 let mongoose = require('mongoose');
 let db = require("../models");
 
-const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
+//const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
 
-console.log(connectionString);
-mongoose.connect({uri_decode_auth: true}+connectionString);
+//console.log(connectionString);
+//mongoose.connect({uri_decode_auth: true}+connectionString);
 
 let seedWorkouts = [
   {
@@ -125,12 +125,12 @@ let seedWorkouts = [
 ];
 
 
-db.workouts.deleteMany({})
- .then(() => db.workouts.collection.insertMany(seedWorkouts))
- .then(data => {
-   console.log(data.result.n + " records inserted!");
-process.exit(0);
- }).catch(error => {
-console.error(error);
- process.exit(1);
-});
+//db.workouts.deleteMany({})
+ //.then(() => db.workouts.collection.insertMany(seedWorkouts))
+ //.then(data => {
+ //  console.log(data.result.n + " records inserted!");
+//process.exit(0);
+// }).catch(error => {
+//console.error(error);
+// process.exit(1);
+//});

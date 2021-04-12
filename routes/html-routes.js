@@ -8,14 +8,14 @@ router.get("/", (request, result) => {
   console.log(path);
 });
 
-router.get("./stats", (request, result) => {
-  result.sendFile(path.join(__dirname + "./stats.html"));
+router.get("/stats", (request, result) => {
+  result.sendFile(path.join(__dirname + "/stats.html"));
   console.log(router);
   console.log(path);
 });
 
-router.get("./exercise", (request, result) => {
-  result.sendFile(path.join(__dirname + "./exercise.html"));
+router.get("/exercise", (request, result) => {
+  result.sendFile(path.join(__dirname + "/exercise.html"));
   console.log(router);
   console.log(path);
 });

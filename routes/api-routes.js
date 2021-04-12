@@ -14,7 +14,7 @@ router.get("/api/workouts", (request, result) => {
     });
 });
 
-router.get("./api/workouts/range", (request, result) => {
+router.get("/api/workouts/range", (request, result) => {
   db.workouts.find({})
     .sort({ date: -1 })
     .then((workouts) => {
@@ -25,7 +25,7 @@ router.get("./api/workouts/range", (request, result) => {
     });
 });
 
-router.post("./api/workouts", (request, result) => {
+router.post("/api/workouts", (request, result) => {
   db.workouts.create(request.body)
     .then((workouts) => {
       result.status(201).json(workouts);

@@ -13,17 +13,20 @@ const PORT = process.env.PORT || 3333;
 
 //use logger
 app.use(logger("dev"));
-app.use(compression());
+
 
 //parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(compression());
 
 //use static files
 app.use(express.static(__dirname + "/public/"));
 
 const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
 
+
+//mongoose.connect({uri_decode_auth: true}+connectionString);
 
 
 require('./seed/seed');
