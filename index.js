@@ -36,10 +36,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Keeping_Fit", {
 
 
 //use routes
-//app.use(require('./routes/api-routes'));
-//app.use(require('./routes/html-routes'));
-require('./routes/api-routes')(app)
-require('./routes/html-routes')(app)
+app.use(require('./routes/api-routes'));
+app.use(require('./routes/html-routes'));
+
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}..`);
