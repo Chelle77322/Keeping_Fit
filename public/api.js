@@ -11,23 +11,23 @@ const callAPI = {
 
     return json[json.length - 1];
   },
-  async addExercise(workouts) {
+  async addExercise(exercises) {
     const id = location.search.split("=")[1];
 console.log(id);
     const result = await fetch("/api/workouts/" + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(workouts)
+      body: JSON.stringify(exercises)
     });
 
     const json = await result.json();
 
     return json;
   },
-  async createWorkout(workouts = {}) {
+  async createWorkout(exercises = {}) {
     const result = await fetch("/api/workouts", {
       method: "POST",
-      body: JSON.stringify(workouts),
+      body: JSON.stringify(exercises),
       headers: { "Content-Type": "application/json" }
     });
 

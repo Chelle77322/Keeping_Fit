@@ -177,7 +177,7 @@ function calculateTotalWeight(data) {
   let totals = [];
 
   data.forEach((workout) => {
-    const workoutTotal = workout.exercises.reduce((total, { type, weight }) => {
+    const workoutTotal = workout.exercise.reduce((total, { type, weight }) => {
       if (type === 'resistance') {
         return total + weight;
       } else {
@@ -194,14 +194,14 @@ function calculateTotalWeight(data) {
 function workoutNames(exercise) {
   let workouts = [];
 
-  exercise.forEach((workouts) => {
-    workouts.exercise.forEach((exercise) => {
-      workouts.push(exercise.name);
+  exercise.forEach((workout) => {
+    workout.exercise.forEach((exercise) => {
+      workout.push(exercise.name);
     });
   });
 
   // return de-duplicated array with JavaScript `Set` object
-  return [...new Set(workouts)];
+  return [...new Set(workout)];
 }
 
 // get all workout data from back-end

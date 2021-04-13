@@ -29,7 +29,7 @@ app.use(express.static(__dirname + "/public/"));
 //mongoose.connect({uri_decode_auth: true}+connectionString);
 mongoose.Promise = Promise;
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Keeping_Fit", {useNewUrlParser: true},{uri_decode_auth: true});
+mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`, {useNewUrlParser: true},{uri_decode_auth: true});
 
 var db = mongoose.connection;
 
