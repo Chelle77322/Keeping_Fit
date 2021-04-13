@@ -22,7 +22,7 @@ app.use(compression());
 
 //use static files
 
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 //const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
 
