@@ -12,7 +12,7 @@ module.exports = (app) =>
     });
   });
   //Gets all the workouts in a specified date range
-  app.get("/api/workouts/:range", (request, result) => {
+  app.get("/api/workouts/range", (request, result) => {
     db.workouts.find({})
       .sort({date: -1 })
       .then((workouts) => {
@@ -23,7 +23,7 @@ module.exports = (app) =>
       });
   });
   //Edits the workout model to include another workout that has been entered
-  app.put("/api/workouts/:workout", ({ params, body}, result) => {
+  app.put('/api/workouts/workout', ({ params, body}, result) => {
     db.workouts.updateOne({_id: params.id},
     {$push: {exercise:body}},
     {upsert: true, useFindAndModify: false},
@@ -33,8 +33,8 @@ module.exports = (app) =>
   });
 //This creates a new workout
 app.post('/api/workouts', (request,result) => {
-  db.workouts.create({}).then(createWorkout => {
-    result.json(createWorkout);
+  db.workouts.create({}).then(newWorkout => {
+    result.json(newWorkout);
   });
 });
 }

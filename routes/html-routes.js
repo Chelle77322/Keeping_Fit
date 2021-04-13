@@ -2,8 +2,7 @@
 const db = require('../models')
 const path = require("path");
 
-
-console.log(path);
+//console.log(path);
 
 module.exports = (app) => {
 app.get('/', (request, result) => {
