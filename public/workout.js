@@ -44,7 +44,7 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(options);
 }
 
-function renderWorkoutSummary(summary) {
+function renderWorkoutSummary(summaryWorkouts) {
   const container = document.querySelector(".workout-stats");
 
   const workoutKeyMap = {
@@ -57,12 +57,12 @@ function renderWorkoutSummary(summary) {
     totalDistance: "Total Distance Covered"
   };
 
-  Object.keys(summary).forEach(key => {
+  Object.keys(summaryWorkouts).forEach(key => {
     const p = document.createElement("p");
     const strong = document.createElement("strong");
 
     strong.textContent = workoutKeyMap[key];
-    const textNode = document.createTextNode(`: ${summary[key]}`);
+    const textNode = document.createTextNode(`: ${summaryWorkouts[key]}`);
 
     p.appendChild(strong);
     p.appendChild(textNode);

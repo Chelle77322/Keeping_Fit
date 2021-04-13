@@ -31,6 +31,8 @@ app.use(express.static(__dirname + "/public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Keeping_Fit", {useNewUrlParser: true});
 
+var db = mongoose.connection;
+
 
 //require('./seed/seed');
 
