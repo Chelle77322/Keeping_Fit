@@ -65,7 +65,7 @@ let seedWorkouts = [
   },
   {
     day: new Date().setDate(new Date().getDate()-6),
-    exercises: [
+    exercise: [
       {
         type: "resistance",
         name: "Bench Press",
@@ -78,7 +78,7 @@ let seedWorkouts = [
   },
   {
     day: new Date().setDate(new Date().getDate()-5),
-    exercises: [
+    exercise: [
       {
         type: "resistance",
         name: "Bench Press",
@@ -91,7 +91,7 @@ let seedWorkouts = [
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 4)),
-    exercises: [
+    exercise: [
       {
         type: "resistance",
         name: "Quad Press",
@@ -104,7 +104,7 @@ let seedWorkouts = [
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 3)),
-    exercises: [
+    exercise: [
       {
         type: "resistance",
         name: "Bench Press",
@@ -117,7 +117,7 @@ let seedWorkouts = [
   },
   {
     day: new Date(new Date().setDate(new Date().getDate() - 2)),
-    exercises: [
+    exercise: [
       {
         type: "resistance",
         name: "Military Press",

@@ -1,7 +1,7 @@
 {
   "name": "keeping_fit",
   "version": "1.0.0",
-  "description": "A fitness tracker app that allows you to keep track of your weekly workouts",
+  "description": "A fitness tracker app that allows you to keep track of your workouts",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://chelle77322.github"
+    "url": "git+https://github.com/Chelle77322/Keeping_Fit.git"
   },
   "keywords": [
     "Fitness",
@@ -22,7 +22,7 @@
     "Tracker"
   ],
   "author": "Michelle Hall",
-  "license": "ISC",
+  "license": "Apache",
   "dependencies": {
     "compression": "^1.7.4",
     "dotenv": "^8.2.0",
