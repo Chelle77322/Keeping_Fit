@@ -21,10 +21,10 @@ function generatePalette() {
   return colorArray;
 }
 
-function populateChart(data) {
-  let durations = data.map(({ totalDuration }) => totalDuration);
-  let pounds = calculateTotalWeight(data);
-  let workout = workoutNames(data);
+function populateChart(workoutData) {
+  let durations = workoutData.map(({ totalDuration }) => totalDuration);
+  let pounds = calculateTotalWeight(workoutData);
+  let workout = workoutNames(workoutData);
   const colors = generatePalette();
 
   let line = document.querySelector('#canvas').getContext('2d');
@@ -42,7 +42,7 @@ function populateChart(data) {
     'Saturday',
   ];
 
-  const labels = data.map(({ day }) => {
+  const labels = workoutData.map(({ day }) => {
     const date = new Date(day);
     return daysOfWeek[date.getDay()];
   });
@@ -173,10 +173,10 @@ function populateChart(data) {
   });
 }
 
-function calculateTotalWeight(data) {
+function calculateTotalWeight(workoutData) {
   let totals = [];
 
-  data.forEach((workout) => {
+  workoutData.forEach((workout) => {
     const workoutTotal = workout.exercise.reduce((total, { type, weight }) => {
       if (type === 'resistance') {
         return total + weight;
@@ -193,6 +193,7 @@ function calculateTotalWeight(data) {
 
 function workoutNames(exercise) {
   let workout = [];
+  console.log(workout)
 
   exercise.forEach((workout) => {
     workout.exercise.forEach((exercise) => {

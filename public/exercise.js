@@ -35,6 +35,7 @@ initExercise();
 
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
+  console.log(workoutType);
 
   if (workoutType === "cardio") {
     cardioForm.classList.remove("d-none");
@@ -103,6 +104,7 @@ async function handleFormSubmit(event) {
   event.preventDefault();
 
   let workoutData = {};
+  console.log(workoutData)
 
   if (workoutType === "cardio") {
     workoutData.type = "cardio";

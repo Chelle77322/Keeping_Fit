@@ -132,7 +132,7 @@ let seedWorkouts = [
 
 
 db.workouts.deleteMany({})
- .then(() => db.workouts.collection.insertMany(seedWorkouts))
+ .then(() => db.workouts.insertMany(seedWorkouts))
  .then(data => {
    console.log(data.result.n + " records inserted!");
 process.exit(0);
