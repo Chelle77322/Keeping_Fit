@@ -23,7 +23,7 @@ module.exports = (app) =>
       });
   });
   //Edits the workout model to include another workout that has been entered
-  app.put('/api/workouts/workout', ({ params, body}, result) => {
+  app.put('/api/workouts/:workout', ({ params, body}, result) => {
     db.workouts.updateOne({_id: params.id},
     {$push: {exercise:body}},
     {upsert: true, useFindAndModify: false},
@@ -32,7 +32,7 @@ module.exports = (app) =>
   })
   });
 //This creates a new workout
-app.post('/api/workouts', (request,result) => {
+app.post('/api/workouts/', (request,result) => {
   db.workouts.create({}).then(newWorkout => {
     result.json(newWorkout);
   });
