@@ -6,17 +6,17 @@ const path = require("path");
 
 module.exports = (app) => {
 app.get('/', (request, result) => {
-  result.sendFile(path.join(__dirname + '/index.html'));
+  result.sendFile(path.join(__dirname + '/public/index.html'));
 
 });
 
 app.get('/stats', (request, result) => {
-  result.sendFile(path.join(__dirname + '/stats.html'));
+  result.sendFile(path.join(__dirname + '/public/stats.html'));
   
 });
 
 app.get('/exercise', (request, result) => {
-  result.sendFile(path.join(__dirname + '/exercise.html'));
+  result.sendFile(path.join(__dirname + '/public/exercise.html'));
  
 });
 }
