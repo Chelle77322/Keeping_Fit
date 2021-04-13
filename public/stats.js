@@ -191,12 +191,12 @@ function calculateTotalWeight(data) {
   return totals;
 }
 
-function workoutNames(exercises) {
+function workoutNames(exercise) {
   let workouts = [];
 
-  exercises.forEach((workouts) => {
-    workouts.exercises.forEach((exercises) => {
-      workouts.push(exercises.name);
+  exercise.forEach((workouts) => {
+    workouts.exercise.forEach((exercise) => {
+      workouts.push(exercise.name);
     });
   });
 

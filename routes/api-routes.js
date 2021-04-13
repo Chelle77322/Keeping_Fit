@@ -11,7 +11,7 @@ module.exports = (app) =>
     });
   });
   //Gets all the workouts in a specified date range
-  app.get("/api/workouts/range", (request, result) => {
+  app.get("/api/workouts/:range", (request, result) => {
     db.workouts.find({})
       .sort({ date: -1 })
       .then((workouts) => {
@@ -25,6 +25,8 @@ module.exports = (app) =>
   app.put("/api/workouts/:id", async (request, result) => {
     const id = request.params.id;
     const body = request.body;
+    console.log(id);
+    console.log(body);
    
     db.workouts.updateOne(
       {_id: id },

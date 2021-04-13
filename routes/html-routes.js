@@ -9,13 +9,13 @@ app.get("/", (request, result) => {
   console.log(path);
 });
 
-app.get("/stats", (request, result) => {
+app.get("./stats", (request, result) => {
   result.sendFile(path.join(__dirname + "./stats.html"));
   console.log(router);
   console.log(path);
 });
 
-app.get("/exercise", (request, result) => {
+app.get("./exercise", (request, result) => {
   result.sendFile(path.join(__dirname + "./exercise.html"));
  
 });

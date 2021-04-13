@@ -9,7 +9,7 @@ let db = require("../models");
 let seedWorkouts = [
   {
     day: new Date().setDate(new Date().getDate()-10),
-    exercises: [
+    exercise: [
       {
         type: "resistance",
         name: "Lateral Pulldown",
@@ -22,7 +22,7 @@ let seedWorkouts = [
   },
   {
     day: new Date().setDate(new Date().getDate()-9),
-    exercises: [
+    exercise: [
       {
         type: "resistance",
         name: "Shoulder Press",
@@ -35,7 +35,7 @@ let seedWorkouts = [
   },
   {
     day: new Date().setDate(new Date().getDate()-8),
-    exercises: [
+    exercise: [
       {
         type: "resistance",
         name: "Push Press",
@@ -48,7 +48,7 @@ let seedWorkouts = [
   },
   {
     day: new Date().setDate(new Date().getDate()-7),
-    exercises: [
+    exercise: [
       {
         type: "cardio",
         name: "Running",

@@ -22,14 +22,13 @@ app.use(compression());
 
 //use static files
 //app.use(express.static(__dirname + "/public/"));
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public/"));
 
 //const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
 
-
 //mongoose.connect({uri_decode_auth: true}+connectionString);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Keeping_Fit", {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Keeping_Fit", {useNewUrlParser: true},{uri_decode_auth: true});
 
 var db = mongoose.connection;
 
