@@ -4,19 +4,18 @@ const callAPI = {
     try {
       result = await fetch("/api/workouts");
     } catch (error) {
-      console.log(error);
-      console.log(getLastWorkout);
+     
     }
     const json = await result.json();
 
     return json[json.length - 1];
   },
-  async addExercise(workout) {
+  async addExercise(exercise) {
     const id = location.search.split("=")[1];
     const result = await fetch('/api/workouts/' + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(workout)
+      body: JSON.stringify(exercise)
     });
 
     const json = await result.json();
