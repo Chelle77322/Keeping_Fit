@@ -1,19 +1,19 @@
 async function initWorkout() {
-  const lastWorkout = await callAPI.getLastWorkout();
+  const prevWorkout = await callAPI.getprevWorkout();
 
-  if (lastWorkout) {
+  if (prevWorkout) {
     document
       .querySelector("a[href='/exercise']")
-      .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
+      .setAttribute("href", `/exercise?id=${prevWorkout._id}`);
      
 
     const summaryWorkouts = {
-      date: formatDate(lastWorkout.day),
-      totalDuration: lastWorkout.totalDuration,
-      numExercises: lastWorkout.exercise.length,
-      ...tallyExercises(lastWorkout.exercise)
+      date: formatDate(prevWorkout.day),
+      totalDuration: prevWorkout.totalDuration,
+      numExercises: prevWorkout.exercise.length,
+      ...tallyExercises(prevWorkout.exercise)
     };
-
+  
     renderWorkoutSummary(summaryWorkouts);
   } else {
     renderNoWorkoutText();

@@ -23,7 +23,7 @@ async function initWorkout() {
   if (location.search.split("=")[1] === undefined) {
     workout = await callAPI.createWorkout()
     console.log(callAPI.createWorkout());
-    console.log(workout)
+    console.log(workout);
   }
   if (workout) {
     location.search = "?id=" + workout._id;
@@ -32,11 +32,11 @@ async function initWorkout() {
 }
 
 initWorkout();
+//Checks to see what workout is chosen and returns accordingly
 
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
-  console.log(workoutType);
-
+  
   if (workoutType === "cardio") {
     cardioForm.classList.remove("d-none");
     resistanceForm.classList.add("d-none");
@@ -50,7 +50,7 @@ function handleWorkoutTypeChange(event) {
 
   validateInputs();
 }
-
+//Validates the user input against the conditions set
 function validateInputs() {
   let isValid = true;
 
@@ -70,12 +70,11 @@ function validateInputs() {
     if (repsInput.value.trim() === "") {
       isValid = false;
     }
-    console.log(repsInput.value.trim());
-
+   
     if (resistanceDurationInput.value.trim() === "") {
       isValid = false;
     }
-    console.log(resistanceDurationInput.value.trim());
+
     } else if (workoutType === "cardio") {
     if (cardioNameInput.value.trim() === "") {
       isValid = false;
@@ -84,8 +83,6 @@ function validateInputs() {
     if (durationInput.value.trim() === "") {
       isValid = false;
     }
-    console.log(durationInput.value.trim());
-
     if (distanceInput.value.trim() === "") {
       isValid = false;
     }
@@ -102,9 +99,9 @@ function validateInputs() {
 
 async function handleFormSubmit(event) {
   event.preventDefault();
-
+//Allows the value of workoutData to be stored in the object array {}
   let workoutData = {};
-  console.log(workoutData)
+
 
   if (workoutType === "cardio") {
     workoutData.type = "cardio";

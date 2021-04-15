@@ -2,7 +2,7 @@ const callAPI = {
   async getLastWorkout() {
     let result;
     try {
-      result = await fetch("/api/workouts");
+      result = await fetch("/api/workout");
     } catch (error) {
       console.log(error);
       console.log(getLastWorkout);
