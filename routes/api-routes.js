@@ -1,7 +1,7 @@
 const db = require('../models');
 module.exports = (app) =>
 {
-  app.get("/api/workouts", (request, result) => {
+  app.get('/api/workouts/', (request, result) => {
     db.workouts.find({}, (error, workouts)=>
     {if (error){
       console.log("There seems to be an"  + error);
@@ -11,17 +11,17 @@ module.exports = (app) =>
     });
   });
   //Gets all the workouts in a specified date range
-  app.get("/api/workouts/:range", (request, result) => {
+  app.get('/api/workouts/:range', (request, result) => {
     db.workouts.find({})
       .sort({date: -1 })
       .then((workouts) => {
         result.status(200).json(workouts);
-        console.log(result);
+     
       })
       .catch((error) => {
         result.status(400).json(error);
       });
-      console.log(result);
+     
   });
   //Edits the workout model to include another workout that has been entered
   app.put('/api/workouts/:id', ({ params, body}, result) => {
