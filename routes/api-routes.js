@@ -23,7 +23,7 @@ module.exports = (app) =>
   });
   //Edits the workout model to include another workout that has been entered
   app.put('/api/workouts/:id', ({ params, body}, result) => {
-    db.workouts.updateOne({workout_id: params.id},
+    db.workouts.updateOne({prevWorkout_id: params.id},
     {$push: {exercise:body}},
     {upsert: true, useFindAndModify: false},
     workoutUpdated => {

@@ -2,7 +2,7 @@ const callAPI = {
   async getprevWorkout() {
     let result;
     try {
-      result = await fetch("/api/workouts");
+      result = await fetch("/api/workouts/");
     } catch (error) {
      
     }
@@ -23,7 +23,7 @@ const callAPI = {
     return json;
   },
   async createWorkout(exercise = {}) {
-    const result = await fetch('/api/workouts', {
+    const result = await fetch('/api/workouts/', {
       method: "POST",
       body: JSON.stringify(exercise),
       headers: { "Content-Type": "application/json" }
@@ -35,7 +35,7 @@ const callAPI = {
   },
 
   async getWorkoutsInRange() {
-    const result = await fetch('/api/workouts/range');
+    const result = await fetch('/api/workouts/:range');
     const json = await result.json();
 
     return json;
