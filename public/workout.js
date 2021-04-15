@@ -13,10 +13,10 @@ async function initWorkout() {
       numExercises: lastWorkout.exercise.length,
       ...tallyExercises(lastWorkout.exercise)
     };
-console.log(summaryWorkouts)
+
     renderWorkoutSummary(summaryWorkouts);
   } else {
-    renderNoWorkoutText("No workouts found");
+    renderNoWorkoutText();
   }
 }
 
