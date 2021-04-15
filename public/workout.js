@@ -21,15 +21,15 @@ async function initWorkout() {
 }
 
 function tallyExercises(exercise) {
-  const tallied = exercise.reduce((acc, curr) => {
+  const tallied = exercise.reduce((access, current) => {
     if (curr.type === "resistance") {
-      acc.totalWeight = (acc.totalWeight || 0) + curr.weight;
-      acc.totalSets = (acc.totalSets || 0) + curr.sets;
-      acc.totalReps = (acc.totalReps || 0) + curr.reps;
+      access.totalWeight = (access.totalWeight || 0) + current.weight;
+      access.totalSets = (access.totalSets || 0) + current.sets;
+      access.totalReps = (access.totalReps || 0) + current.reps;
     } else if (curr.type === "cardio") {
-      acc.totalDistance = (acc.totalDistance || 0) + curr.distance;
+      access.totalDistance = (access.totalDistance || 0) + current.distance;
     }
-    return acc;
+    return access;
   }, {});
   return tallied;
 }
@@ -64,7 +64,7 @@ function renderWorkoutSummary(summaryWorkouts) {
 
     strong.textContent = workoutKeyMap[key];
     const textNode = document.createTextNode(`: ${summaryWorkouts[key]}`);
-
+console.log(textNode);
     p.appendChild(strong);
     p.appendChild(textNode);
 

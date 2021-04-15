@@ -24,7 +24,7 @@ function generatePalette() {
 function populateChart(workoutData) {
   let durations = workoutData.map(({ totalDuration }) => totalDuration);
   let pounds = calculateTotalWeight(workoutData);
-  let workout = workoutNames(workoutData);
+  let workouts = workoutNames(workoutData);
   const colors = generatePalette();
 
   let line = document.querySelector('#canvas').getContext('2d');
@@ -135,7 +135,7 @@ function populateChart(workoutData) {
   let pieChart = new Chart(pie, {
     type: 'pie',
     data: {
-      labels: workout,
+      labels: workouts,
       datasets: [
         {
           label: 'Exercises Performed',
@@ -176,8 +176,8 @@ function populateChart(workoutData) {
 function calculateTotalWeight(workoutData) {
   let totals = [];
 
-  workoutData.forEach((workout) => {
-    const workoutTotal = workout.exercise.reduce((total, { type, weight }) => {
+  workoutData.forEach((workouts) => {
+    const workoutTotal = workouts.exercise.reduce((total, { type, weight }) => {
       if (type === 'resistance') {
         return total + weight;
       } else {
