@@ -49,6 +49,8 @@ header {
 header h1 {
   transform: skewX(-4deg);
   font-family: 'Lemonada', 'sans-serif';
+  font-weight: bolder;
+  font-style: initial;
 }
 
 select {
@@ -371,6 +373,7 @@ form > button {
 .prev-workout h3 {
   font-size: 2rem;
   width: 100%;
+  font-family:'Lemonada', 'sans serif';
 }
 
 .prev-workout p {
