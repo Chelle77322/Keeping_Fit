@@ -1,5 +1,5 @@
 const callAPI = {
-  async getLastWorkout() {
+  async getprevWorkout() {
     let result;
     try {
       result = await fetch("/api/workouts");
