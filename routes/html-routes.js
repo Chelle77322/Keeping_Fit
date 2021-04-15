@@ -1,8 +1,5 @@
-//const router = require("express").Router();
-const db = require('../models')
+//const db = require('../models');
 const path = require("path");
-
-//console.log(path);
 
 module.exports = (app) => {
 app.get('/', (request, result) => {

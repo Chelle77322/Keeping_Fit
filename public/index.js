@@ -2,10 +2,10 @@ init();
 
 async function init(){
   if (location.search.split("=")[1] === undefined) {
-    const workout = await callAPI.getprevWorkout();
+    const workouts = await callAPI.getprevWorkout();
   
-if (workout) {
-      location.search = "?id=" + workout_id;
+if (workouts) {
+      location.search = "?id=" + workouts_id;
     } else {
       document.querySelector("#continue-btn").classList.add("d-none")
     }
