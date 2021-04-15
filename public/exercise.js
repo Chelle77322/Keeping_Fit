@@ -17,13 +17,13 @@ const newWorkout = document.querySelector(".new-workout")
 let workoutType = null;
 let shouldNavigateAway = false;
 
-async function initExercise() {
+async function initWorkout() {
   let workout;
 
   if (location.search.split("=")[1] === undefined) {
     workout = await callAPI.createWorkout()
-    //console.log(callAPI.createWorkout());
-    //console.log(workout)
+    console.log(callAPI.createWorkout());
+    console.log(workout)
   }
   if (workout) {
     location.search = "?id=" + workout._id;
@@ -31,7 +31,7 @@ async function initExercise() {
 
 }
 
-initExercise();
+initWorkout();
 
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;

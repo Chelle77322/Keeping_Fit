@@ -1,11 +1,11 @@
 async function initWorkout() {
   const lastWorkout = await callAPI.getLastWorkout();
-  console.log(lastWorkout);
+
   if (lastWorkout) {
     document
       .querySelector("a[href='/exercise']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
-      console.log(lastWorkout);
+     
 
     const summaryWorkouts = {
       date: formatDate(lastWorkout.day),
