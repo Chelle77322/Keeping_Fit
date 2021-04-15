@@ -1,7 +1,7 @@
 init();
 
 async function init(){
-  if (location.search.split("=")[1] === undefined) {
+  if (location.search.split("=")[1] === exercise) {
     const workouts = await callAPI.getprevWorkout();
   
 if (workouts) {
