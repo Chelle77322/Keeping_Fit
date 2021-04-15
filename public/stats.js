@@ -192,17 +192,17 @@ function calculateTotalWeight(workoutData) {
 }
 
 function workoutNames(exercise) {
-  let workout = [];
-  console.log(workout)
+  let workouts = [];
 
-  exercise.forEach((workout) => {
-    workout.exercise.forEach((exercise) => {
-      workout.push(exercise.name);
+
+  exercise.forEach((workouts) => {
+    workouts.exercise.forEach((exercise) => {
+      workouts.push(exercise.name);
     });
   });
 
   // return de-duplicated array with JavaScript `Set` object
-  return [...new Set(workout)];
+  return [...new Set(workouts)];
 }
 
 // get all workout data from back-end
