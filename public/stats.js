@@ -155,7 +155,7 @@ function populateChart(workoutData) {
   let donutChart = new Chart(pie2, {
     type: 'doughnut',
     data: {
-      labels: workout,
+      labels: workouts,
       datasets: [
         {
           label: 'Exercises Performed',
