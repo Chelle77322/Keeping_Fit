@@ -16,10 +16,12 @@ module.exports = (app) =>
       .sort({date: -1 })
       .then((workouts) => {
         result.status(200).json(workouts);
+        console.log(result);
       })
       .catch((error) => {
         result.status(400).json(error);
       });
+      console.log(result);
   });
   //Edits the workout model to include another workout that has been entered
   app.put('/api/workouts/:id', ({ params, body}, result) => {
