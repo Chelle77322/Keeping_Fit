@@ -1,5 +1,5 @@
 const db = require('../models');
-//const workouts = require('../models/workouts');
+const workouts = require('../models/workouts');
 module.exports = (app) =>
 {
   app.get("/api/workouts", (request, result) => {
