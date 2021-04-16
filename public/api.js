@@ -10,6 +10,7 @@ const callAPI = {
 
     return json[json.length - 1];
   },
+  //ISSUE HERE
   async addExercise(exercise) {
     const id = location.search.split("=")[1];
     const result = await fetch('/api/workouts/' + id, {

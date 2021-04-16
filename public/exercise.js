@@ -116,7 +116,7 @@ async function handleFormSubmit(event) {
     workoutData.reps = Number(repsInput.value.trim());
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
-
+//ISSUE HERE
   await callAPI.addExercise(workoutData);
   clearInputs();
   //console.log(workoutData);
