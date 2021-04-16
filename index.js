@@ -29,9 +29,15 @@ app.use(express.static(__dirname + "/public"));
 //mongoose.connect({uri_decode_auth: true}+connectionString);
 mongoose.Promise = Promise;
 
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/keeping_fit:${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}`, {useNewUrlParser: true});
+//mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/keeping_fit:${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}`, {useNewUrlParser: true});
 
-var db = mongoose.connection;
+//var db = mongoose.connection;
+
+mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/keeping_fit`, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+});
 
 
 //require('./seed/seed');
