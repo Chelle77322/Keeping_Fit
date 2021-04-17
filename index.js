@@ -22,7 +22,7 @@ app.use(compression());
 
 //use static files
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "public"));
 
 //const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
 
@@ -45,7 +45,7 @@ mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/keeping_fit`, {
 //use routes
 //app.use(require('./routes/api-routes'));
 //app.use(require('./routes/html-routes'));
-require('./routes/api-routes')(app)
+//require('./routes/api-routes')(app)
 require ('./routes/html-routes')(app)
 
 app.listen(PORT, () => {
