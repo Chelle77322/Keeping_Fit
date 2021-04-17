@@ -83,6 +83,6 @@ function isRequired(field) {
   //return totalDuration;
 //});
 
-
+const exercises = mongoose.model("exercise", exerciseSchema);
 
 module.exports = workouts;

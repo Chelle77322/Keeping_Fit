@@ -33,7 +33,7 @@ result.status(500).json(error);
 });
 //Adding the workouts entered by the user
 app.get('/workouts', async (request, result)=>{
-  workouts.aggregate([
+  workout.aggregate([
     {$addFields: {
       totalDuration: { $sum: "$exercise.duration"},
     },
