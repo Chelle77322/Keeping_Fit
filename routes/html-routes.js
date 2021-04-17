@@ -1,5 +1,5 @@
 const db = require('../models');
-const app = require("express");
+
 const path = require("path");
 const {workouts} = require("../models/workouts");
 
@@ -33,7 +33,7 @@ result.status(500).json(error);
 });
 //Adding the workouts entered by the user
 app.get('/workouts', async (request, result)=>{
-  workout.aggregate([
+  workouts.aggregate([
     {$addFields: {
       totalDuration: { $sum: "$exercise.duration"},
     },
