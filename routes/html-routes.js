@@ -45,7 +45,7 @@ app.get('/workouts', async (request, result)=>{
   });
 });
 //Now to post the results
-app.post('/workouts', ({body}, result) => {
+app.post('api/workouts', ({body}, result) => {
   workouts.create(body).then ((workouts) =>{
   result.json(workouts);
 }).catch ((error)=> {
@@ -53,18 +53,18 @@ app.post('/workouts', ({body}, result) => {
 });
 });
 //Now we put the workout information
-app.put('/workouts/:id', (request, result) =>{
-  workouts.findById(request.params.id).then((workout)=> {
-    workout.exercise.push(request.body);
+app.put('api/workouts/:id', (request, result) =>{
+  workouts.findById(request.params.id).then((workouts)=> {
+    workouts.exercise.push(request.body);
     workouts.updateOne({ _id: request.params.id},
-      workout, (error, result)=> {
+      workouts, (error, result)=> {
         result.json(workout);
       });
   }).catch((error)=>{
     result.status(400).json(error);
   });
 });
-app.get('/workouts/range', (request, result)=> {
+app.get('api/workouts/range', (request, result)=> {
   workouts.aggregate([{
     $sort: {day: -1},
   },

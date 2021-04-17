@@ -43,13 +43,13 @@ mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/keeping_fit`, {
 });
 mongoose.Promise = Promise;
 //require('./seed/seed');
-require ('./routes/html-routes')(app)
+require ('./routes/html-routes')(app);
 app.use(routes);
 
 //use routes
 //app.use(require('./routes/api-routes'));
 //app.use(require('./routes/html-routes'));
-//require('./routes/api-routes')(app)
+require('./routes/api-routes')(app);
 
 
 app.listen(PORT, () => {

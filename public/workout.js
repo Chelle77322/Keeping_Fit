@@ -1,5 +1,6 @@
 async function initWorkout() {
   const prevWorkout = await callAPI.getprevWorkout();
+  console.log("This is the previous:" +prevWorkout);
 
   if (prevWorkout) {
     document
@@ -63,8 +64,8 @@ function renderWorkoutSummary(summary) {
     const strong = document.createElement("strong");
 
     strong.textContent = workoutKeyMap[key];
-    const textNode = document.createTextNode(`: ${summaryWorkouts[key]}`);
-console.log(textNode);
+    const textNode = document.createTextNode(`: ${summary[key]}`);
+
     p.appendChild(strong);
     p.appendChild(textNode);
 
