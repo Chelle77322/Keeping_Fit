@@ -2,9 +2,9 @@ const callAPI = {
   async getprevWorkout() {
     let result;
     try {
-      result = await fetch("/api/workouts/");
+      result = await fetch("/api/workouts");
     } catch (error) {
-     
+     console.log(error);
     }
     const json = await result.json();
 

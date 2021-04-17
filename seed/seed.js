@@ -1,10 +1,15 @@
 let mongoose = require('mongoose');
 let db = require("../models");
+const exercises = require('../models/exercises');
 
 //const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
 
 //console.log(connectionString);
 //mongoose.connect({uri_decode_auth: true}+connectionString);
+mongoose.connect("mongodb://localhost/keeping_fit", {
+  useNewUrlParser: true,
+  useFindAndModify: false
+});
 
 let seedWorkouts = [
   {
@@ -81,11 +86,11 @@ let seedWorkouts = [
     exercise: [
       {
         type: "resistance",
-        name: "Bench Press",
-        duration: 20,
-        weight: 300,
-        reps: 10,
-        sets: 4
+        name: "Hamstring Curl",
+        duration: 10,
+        weight: 140,
+        reps: 5,
+        sets: 3
       }
     ]
   },
@@ -94,8 +99,8 @@ let seedWorkouts = [
     exercise: [
       {
         type: "resistance",
-        name: "Quad Press",
-        duration: 30,
+        name: "Leg Press",
+        duration: 10,
         weight: 300,
         reps: 10,
         sets: 4
@@ -107,9 +112,9 @@ let seedWorkouts = [
     exercise: [
       {
         type: "resistance",
-        name: "Bench Press",
-        duration: 20,
-        weight: 300,
+        name: "Bent Over Row",
+        duration: 5,
+        weight: 20,
         reps: 10,
         sets: 4
       }
@@ -133,8 +138,8 @@ let seedWorkouts = [
 
 db.workouts.deleteMany({})
  .then(() => db.workouts.insertMany(seedWorkouts))
- .then(data => {
-   console.log(data.result.n + " records inserted!");
+ .then(exercises => {
+   console.log(exercises.result.n + " records inserted!");
 process.exit(0);
  }).catch(error => {
 console.error(error);
