@@ -65,6 +65,12 @@ let seedWorkouts = [
         name: "Jogging",
         duration: 60,
         distance: 10
+      },
+      {
+        type: "cardio",
+        name: "Sprint Intervals",
+        duration: 15,
+        distance: 2
       }
     ]
   },
@@ -138,8 +144,8 @@ let seedWorkouts = [
 
 db.workouts.deleteMany({})
  .then(() => db.workouts.insertMany(seedWorkouts))
- .then(exercises => {
-   console.log(exercises.result.n + " records inserted!");
+ .then(exercise => {
+   console.log(exercise.result.n + " records inserted!");
 process.exit(0);
  }).catch(error => {
 console.error(error);

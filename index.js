@@ -36,9 +36,9 @@ mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/keeping_fit`, {
     useNewUrlParser: true,
     useFindAndModify: false,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 });
-
 
 //require('./seed/seed');
 
