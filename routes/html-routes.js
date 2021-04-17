@@ -1,7 +1,7 @@
 const db = require('../models');
-
 const path = require("path");
-const {workouts} = require("../models/workouts");
+const {workouts} = require('..models/workouts.js');
+const {exercise} = require('../models/exercises.js');
 
 module.exports = (app) => {
 //Call to get the index page with a try and catch
@@ -75,7 +75,7 @@ app.get('api/workouts/range', (request, result)=> {
     $sort: {day:1},
   },
   {
-    $addFiles: { totalDuration: {$sum: "$exercise/duration"}},
+    $addFiles: { totalDuration: {$sum: "$exercise.duration"}},
   },
 ]).execute((error, result) =>{
   if (error){
@@ -84,5 +84,5 @@ app.get('api/workouts/range', (request, result)=> {
   }
   result.json(result);
 });
-});
+})
 }
