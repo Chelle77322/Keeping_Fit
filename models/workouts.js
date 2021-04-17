@@ -85,4 +85,4 @@ function isRequired(field) {
 
 const exercises = mongoose.model("exercise", exerciseSchema);
 
-module.exports = workouts;
+module.exports = {workouts};
