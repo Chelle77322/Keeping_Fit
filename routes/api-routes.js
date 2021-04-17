@@ -1,6 +1,7 @@
 const db = require('../models');
 const path = require("path");
-const {workouts} = require('..models/workouts.js');
+const app = require('express');
+const {workouts} = require('../models/workouts');
 const {exercise} = require('../models/exercises.js');
 module.exports = (app) =>
 {
@@ -60,16 +61,17 @@ try{
       result.status(400).json(error);
     });
   });
-  app.put("/workouts/:id", (request, result)=> {
+  app.put("api/workouts/:id", (request, result)=> {
     workouts.findById(request.params.id).then((workouts)=>{
       workouts.exercise.push(request.body);
       workouts.updateOne({ _id: request.params.id },
         workouts, (error, result)=>{
-          result.json(workout);
+          result.json(workouts);
         });
+    }).catch((error)=>
+    {
+      result.status(400).json(error);
     });
-  }).catch((error)=>{
-    result.status(400).json(error);
   });
   //Gets workouts in specified date range
   app.get("/workouts/range", (request, result)=>
@@ -87,11 +89,12 @@ try{
     {
       $addFields: {totalDuration: {$sum: "$exercise.duration"},}
     },
-  ]).exec((error, result)=>{
+  ]).execute((error, result)=>{
     if (error){
       result.json(error);
       return;
     }
+   
     result.json(result);
   });
 }

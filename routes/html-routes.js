@@ -1,6 +1,7 @@
 const db = require('../models');
 const path = require("path");
-const {workouts} = require('..models/workouts.js');
+const app = require('express');
+const {workouts} = require('../models/workouts');
 const {exercise} = require('../models/exercises.js');
 
 module.exports = (app) => {
