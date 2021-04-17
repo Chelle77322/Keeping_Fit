@@ -21,10 +21,10 @@ function generatePalette() {
   return colorArray;
 }
 
-function populateChart(workoutData) {
-  let durations = workoutData.map(({ totalDuration }) => totalDuration);
-  let pounds = calculateTotalWeight(workoutData);
-  let workouts = workoutNames(workoutData);
+function populateChart(exercise) {
+  let durations = exercise.map(({ totalDuration }) => totalDuration);
+  let pounds = calculateTotalWeight(exercise);
+  let workouts = workoutNames(exercise);
   const colors = generatePalette();
 
   let line = document.querySelector('#canvas').getContext('2d');
@@ -173,10 +173,10 @@ function populateChart(workoutData) {
   });
 }
 
-function calculateTotalWeight(workoutData) {
+function calculateTotalWeight(exercises) {
   let totals = [];
 
-  workoutData.forEach((workouts) => {
+  exercises.forEach((workouts) => {
     const workoutTotal = workouts.exercise.reduce((total, { type, weight }) => {
       if (type === 'resistance') {
         return total + weight;

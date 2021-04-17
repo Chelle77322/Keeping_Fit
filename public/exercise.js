@@ -26,7 +26,7 @@ async function initWorkout() {
     console.log(workout);
   }
   if (workout) {
-    location.search = "?id=" + workout_id;
+    location.search = "?id=" + workouts._id;
   }
 
 }
@@ -101,7 +101,6 @@ async function handleFormSubmit(event) {
   event.preventDefault();
 //Allows the value of workoutData to be stored in the object array {}
   let workoutData = {};
-
 
   if (workoutType === "cardio") {
     workoutData.type = "cardio";

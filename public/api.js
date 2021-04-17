@@ -13,7 +13,7 @@ const callAPI = {
   //ISSUE HERE
   async addExercise(exercise) {
     const id = location.search.split("=")[1];
-    const result = await fetch('/workouts' + id, {
+    const result = await fetch('/workouts/' + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(exercise)
@@ -35,7 +35,7 @@ const callAPI = {
   },
 
   async getWorkoutsInRange() {
-    const result = await fetch('/workouts/range');
+    const result = await fetch(`/workouts/range`);
     const json = await result.json();
 
     return json;
