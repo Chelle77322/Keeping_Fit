@@ -1,7 +1,7 @@
-//const db = require('../models');
+const db = require('../models');
 const app = require("express");
 const path = require("path");
-const workouts = require("../models/workouts");
+const {workouts} = require("../models/workouts");
 
 module.exports = (app) => {
 //Call to get the index page with a try and catch
