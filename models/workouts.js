@@ -61,28 +61,28 @@ function isRequired(field) {
   };
 }
 //This part is an alternative to the aggregate $addField stuff
-//const workoutSchema = new Schema(
-  //{
-    //day: {
-      //type: Date,
-      //default: Date.now,
-    //},
-    //exercise: [exerciseSchema],
- //},
- // {
-   // toObject: { virtuals: true },
-    //toJSON: { virtuals: true },
-  //}
-//);
+const workoutSchema = new Schema(
+  {
+    day: {
+      type: Date,
+      default: Date.now,
+    },
+    exercise: [exerciseSchema],
+ },
+ {
+   toObject: { virtuals: true },
+    toJSON: { virtuals: true },
+  }
+);
 
-//workoutsSchema.virtual("totalDuration").get(function () {
-  //let totalDuration = 0;
-  //this.exercise.forEach((el) => {
-    //totalDuration += el.duration;
-  //});
-  //return totalDuration;
-//});
+workoutsSchema.virtual("totalDuration").get(function () {
+  let totalDuration = 0;
+  this.exercise.forEach((el) => {
+    totalDuration += el.duration;
+  });
+  return totalDuration;
+});
 
 const exercises = mongoose.model("exercise", exerciseSchema);
 
-module.exports = {workouts};
+module.exports = {workouts}, {exercises};
