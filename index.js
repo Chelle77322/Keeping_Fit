@@ -18,8 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(compression());
 
-const dotenv = require("dotenv");
-dotenv.config();
+
 
 //Mongoose connection
 mongoose.connect(MONGODB_URI, {
