@@ -2,8 +2,8 @@ const router = require("express").Router();
 const workouts = require("../models/workouts.js");
 
 router.post("api/workouts", (request,result)=>{
-  workouts.create({}).then(dbworkouts=>{
-    result.json(dbworkouts);
+  workouts.create({}).then(dbkeeping_fit=>{
+    result.json(dbkeeping_fit);
   }).catch(error => {
     result.json(error);
 
@@ -15,22 +15,22 @@ router.put("/api/workouts/:id", ({body, params}, result)=>{
   },
   //Validation check here
   {new: true, runValidatiors: true}
-    ).then (dbworkouts => {
-      result.json(dbworkouts);
+    ).then (dbkeeping_fit => {
+      result.json(dbkeeping_fit);
     }).catch(error => {
       result.json(error);
     });
 });
 router.get("/api/workouts", (request, result)=>{
-workouts.find().then(dbworkouts => {
-  result.json(dbworkouts);
+workouts.find().then(dbkeeping_fit => {
+  result.json(dbkeeping_fit);
 }).catch(error =>{
   result.json(error);
 });
 });
 router.get("/api/workouts/range", ({query}, result)=> {
-workouts.find({day: {$gte: query.start, $lte: query.end}}).then(dbworkouts => {
-  result.json(dbworkouts);
+workouts.find({day: {$gte: query.start, $lte: query.end}}).then(dbkeeping_fit => {
+  result.json(dbkeeping_fit);
 }).catch(error => {
   result.json(error);
 });
