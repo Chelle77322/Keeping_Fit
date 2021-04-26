@@ -27,7 +27,7 @@ mongoose.connect(MONGODB_URI, {
     useFindAndModify: false
 });
 app.use(require("./routes/html-routes.js"));
-app.use(require("./routes/api-routes"));
+app.use (require("./routes/api-routes.js"));
 
 //use static files
 app.use(express.static(__dirname + "/public/"));
