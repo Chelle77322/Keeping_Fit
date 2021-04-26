@@ -2,10 +2,10 @@ let mongoose = require('mongoose');
 let db = require("../models");
 const exercises = require('../models/exercises');
 
-//const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
+const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
 
-//console.log(connectionString);
-//mongoose.connect({uri_decode_auth: true}+connectionString);
+console.log(connectionString);
+mongoose.connect({uri_decode_auth: true}+connectionString);
 mongoose.connect("mongodb://localhost/keeping_fit", {
   useNewUrlParser: true,
   useFindAndModify: false

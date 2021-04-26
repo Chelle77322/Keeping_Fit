@@ -33,7 +33,7 @@ app.use(express.static(__dirname + "/public/"));
 
 //mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/keeping_fit:${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}`, {useNewUrlParser: true});
 
-//var db = mongoose.connection;
+const db = db("Keeping_fit");
 
 mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/keeping_fit`, {
     useNewUrlParser: true,
