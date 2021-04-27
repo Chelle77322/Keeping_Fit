@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3333;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/keeping_fit";
 
 //app settings
-//const app = express();
+const app = express();
 //use logger
 //app.use(logger("dev"));
 
