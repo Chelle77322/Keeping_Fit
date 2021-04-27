@@ -6,7 +6,7 @@ const compression = require('compression');
 
 //set port
 const PORT = process.env.PORT || 3333;
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/Keeping_Fit";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/keeping_fit";
 
 //app settings
 const app = express();
@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(compression());
 //use static files
-app.use(express.static(__dirname + "/public/"));
+app.use(express.static("public"));
 
 //Mongoose connection
 mongoose.connect(MONGODB_URI, {
