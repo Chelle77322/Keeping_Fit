@@ -1,45 +1,43 @@
 const router = require("express").Router();
-const workouts = require("../models/workouts.js");
+const db = require("../models");
 
-router.post("api/workouts", (request,result)=>{
-  workouts.create({}).then(dbkeeping_fit=>{
-    result.json(dbkeeping_fit);
-  }).catch(error => {
-    result.json(error);
-
+router.get("/api/workouts", (request, result) => {
+  db.workouts.find({}).then((data) => result.json(data)).catch((error)=>{
+    throw error;
   });
 });
-router.put("/api/workouts/:id", ({body, params}, result)=>{
-  workouts.findByIdAndUpdate(params.id,{
+
+router.get("/api/workouts/range", (request, result)=> {
+db.workoutst.find({}).then ((data)=> result.json(data)).catch((error)=>{
+  throw error;
+});
+});
+
+
+router.post("api/workouts", (request,result)=>{
+  db.workouts.create({}).then((data)=> result.json(data)).catch((error)=> {
+    throw error;
+  });
+
+  });
+
+router.put("/api/workouts/:id", ({body, params}, result) => {
+  db.workouts.findByIdAndUpdate(params.id,{
     $push: {exercises: body}
   },
   //Validation check here
   {new: true, runValidatiors: true}
-    ).then (dbkeeping_fit => {
-      result.json(dbkeeping_fit);
-    }).catch(error => {
-      result.json(error);
+    ).then ((data) => result.json(data)).catch((error)=> {
+      throw error;
+    }); 
     });
-});
-router.get("/api/workouts", (request, result)=>{
-workouts.find().then(dbkeeping_fit => {
-  result.json(dbkeeping_fit);
-}).catch(error =>{
-  result.json(error);
-});
-});
-router.get("/api/workouts/range", ({query}, result)=> {
-workouts.find({day: {$gte: query.start, $lte: query.end}}).then(dbkeeping_fit => {
-  result.json(dbkeeping_fit);
-}).catch(error => {
-  result.json(error);
-});
-});
+
+
 router.delete("/api/workouts", ({body}, result)=> {
-workouts.findByIDAndDelete(body.id).then(()=> {
+workouts.findByIDAndDelete(body.id).then(() => {
     result.json(true);
 }).catch(error => {
-  result.json(error);
+ throw error;
 });
 });
 module.exports = router;
