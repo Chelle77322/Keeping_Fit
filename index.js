@@ -4,6 +4,9 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require('compression');
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 //set port
 const PORT = process.env.PORT || 3333;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/keeping_fit";
@@ -27,7 +30,9 @@ mongoose.connect(MONGODB_URI, {
 });
 //routes
 //app.use(require("./routes/html-routes.js"));
-app.use(require("./routes/api-routes.js"));
+//app.use(require("./routes/api-routes.js"));
+require('./routes/api-routes')(app)
+require ('./routes/html-routes')(app)
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}..`);
