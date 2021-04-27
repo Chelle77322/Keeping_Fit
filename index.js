@@ -17,9 +17,11 @@ const app = express();
 app.use(logger("dev"));
 
 //parsers
+app.use(compression());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(compression());
+
 //use static files
 app.use(express.static("public"));
 
@@ -29,10 +31,7 @@ mongoose.connect(MONGODB_URI, {
     useFindAndModify: false
 });
 //routes
-//app.use(require("./routes/html-routes.js"));
-//app.use(require("./routes/api-routes.js"));
-require('./routes/api-routes')(app)
-require ('./routes/html-routes')(app)
+app.use(require('./routes/api-routes'));
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}..`);
