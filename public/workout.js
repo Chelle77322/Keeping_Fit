@@ -1,10 +1,10 @@
 async function initWorkout() {
   const prevWorkout = await callAPI.getprevWorkout();
-  console.log("This is the previous:" +prevWorkout);
+  console.log("This is the previous:", prevWorkout);
 
   if (prevWorkout) {
     document
-      .querySelector("a[href='/exercise']")
+      .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${prevWorkout._id}`);
      
 
@@ -12,22 +12,22 @@ async function initWorkout() {
       date: formatDate(prevWorkout.day),
       totalDuration: prevWorkout.totalDuration,
       numExercises: prevWorkout.exercise.length,
-      ...tallyExercises(prevWorkout.exercise)
+      ...tallyExercises(prevWorkout.exercises)
     };
   
     renderWorkoutSummary(summaryWorkouts);
   } else {
-    renderNoWorkoutText();
+    renderNoWorkoutText()
   }
 }
 
-function tallyExercises(exercise) {
-  const tallied = exercise.reduce((access, current) => {
-    if (curr.type === "resistance") {
+function tallyExercises(exercises) {
+  const tallied = exercises.reduce((access, current) => {
+    if (current.type === "resistance") {
       access.totalWeight = (access.totalWeight || 0) + current.weight;
       access.totalSets = (access.totalSets || 0) + current.sets;
       access.totalReps = (access.totalReps || 0) + current.reps;
-    } else if (curr.type === "cardio") {
+    } else if (current.type === "cardio") {
       access.totalDistance = (access.totalDistance || 0) + current.distance;
     }
     return access;
@@ -82,5 +82,4 @@ function renderNoWorkoutText() {
   p.appendChild(strong);
   container.appendChild(p);
 }
-
 initWorkout();
