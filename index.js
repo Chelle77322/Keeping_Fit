@@ -12,26 +12,26 @@ const PORT = process.env.PORT || 3333;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/keeping_fit";
 
 //app settings
-const app = express();
+//const app = express();
 //use logger
-app.use(logger("dev"));
+//app.use(logger("dev"));
 
 //parsers
-app.use(compression());
+//app.use(compression());
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+//app.use(express.urlencoded({ extended: true }));
+//app.use(express.json());
 
 //use static files
-app.use(express.static("public"));
+//app.use(express.static("public"));
 
 //Mongoose connection
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useFindAndModify: false
 });
-//routes
-app.use(require('./routes/api-routes'));
+
+
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}..`);
