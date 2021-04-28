@@ -8,6 +8,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static("public"));
 
+require('./seed/seed');
+
 //ROUTES
 app.use(require("./routes/apiroutes.js"));
 app.use(require("./routes/htmlroutes"));
