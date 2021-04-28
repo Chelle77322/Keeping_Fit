@@ -2,19 +2,20 @@ const router = require("express").Router();
 const db = require("../models");
 
 router.get("/api/workouts", (request, result) => {
-  db.workouts.find({}).then((data) => result.json(data)).catch((error)=>{
+  db.workouts.find({}).then((data) => result.json(data)).catch((error) => {
+    console.log(router);
     throw error;
   });
 });
 
 router.get("/api/workouts/range", (request, result)=> {
-db.workoutst.find({}).then ((data)=> result.json(data)).catch((error)=>{
+db.workouts.find({}).then ((data)=> result.json(data)).catch((error)=>{
   throw error;
 });
 });
 
 
-router.post("api/workouts", (request,result)=>{
+router.post("/api/workouts", (request,result)=>{
   db.workouts.create({}).then((data)=> result.json(data)).catch((error)=> {
     throw error;
   });
