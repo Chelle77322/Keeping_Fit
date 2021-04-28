@@ -11,7 +11,7 @@ const workoutsSchema = new Schema(
   },
   exercises:{
     type: Array,
-    default:[{}],
+    default:[],
   },
 
 });
