@@ -1,12 +1,8 @@
 let mongoose = require('mongoose');
 let db = require("../models");
-const exercises = require('../models/exercises');
 
-const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@workouts.a1ska.mongodb.net/Keeping_Fit?retryWrites=true&w=majority`
-
-console.log(connectionString);
-mongoose.connect({uri_decode_auth: true}+connectionString);
-mongoose.connect("mongodb://localhost/keeping_fit", {
+//mongoose connection rewrite here
+mongoose.connect("mongodb://localhost/workouts",{
   useNewUrlParser: true,
   useFindAndModify: false
 });
@@ -14,7 +10,7 @@ mongoose.connect("mongodb://localhost/keeping_fit", {
 let seedWorkouts = [
   {
     day: new Date().setDate(new Date().getDate()-10),
-    exercise: [
+    exercises: [
       {
         type: "resistance",
         name: "Lateral Pulldown",
@@ -27,7 +23,7 @@ let seedWorkouts = [
   },
   {
     day: new Date().setDate(new Date().getDate()-9),
-    exercise: [
+    exercises: [
       {
         type: "resistance",
         name: "Shoulder Press",
@@ -40,7 +36,7 @@ let seedWorkouts = [
   },
   {
     day: new Date().setDate(new Date().getDate()-8),
-    exercise: [
+    exercises: [
       {
         type: "resistance",
         name: "Push Press",
@@ -53,7 +49,7 @@ let seedWorkouts = [
   },
   {
     day: new Date().setDate(new Date().getDate()-7),
-    exercise: [
+    exercises: [
       {
         type: "cardio",
         name: "Running",
@@ -76,7 +72,7 @@ let seedWorkouts = [
   },
   {
     day: new Date().setDate(new Date().getDate()-6),
-    exercise: [
+    exercises: [
       {
         type: "resistance",
         name: "Bench Press",
