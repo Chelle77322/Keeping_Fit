@@ -1,5 +1,5 @@
 async function initWorkout() {
-  const prevWorkout = await callAPI.getprevWorkout();
+  const prevWorkout = await callAPI.getPrevWorkout();
   console.log("This is the previous:", prevWorkout);
 
   if (prevWorkout) {
@@ -16,6 +16,7 @@ async function initWorkout() {
     };
   
     renderWorkoutSummary(summaryWorkouts);
+    return summaryWorkouts;
   } else {
     renderNoWorkoutText()
   }
@@ -58,6 +59,7 @@ function renderWorkoutSummary(summary) {
     totalReps: "Total Reps Performed",
     totalDistance: "Total Distance Covered"
   };
+  
 
   Object.keys(summary).forEach(key => {
     const p = document.createElement("p");
