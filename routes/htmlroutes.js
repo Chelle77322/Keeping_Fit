@@ -6,13 +6,13 @@ router.get("/", (request, result)=>{
   result.sendFile(path.join(__dirname, "public/index.html"));
 });
 //Call to get the exercise page with a try and catch
-app.get("/exercise" , (request, result) => {
+router.get("/exercise" , (request, result) => {
   
   result.sendFile(path.join(__dirname , "public/exercise.html"));
 });
 
 //Call to get the stats page with a try and catch
-app.get("/stats", (request, result) => {
+router.get("/stats", (request, result) => {
   
   result.sendFile(path.join(__dirname,  "public/stats.html"));
 });
