@@ -1,10 +1,10 @@
 const callAPI = {
-  async getprevWorkout() {
+  async getPrevWorkout() {
     let result;
     try {
       result = await fetch("/api/workouts");
     } catch (error) {
-     console.log(error);
+    
     }
     const json = await result.json();
 
