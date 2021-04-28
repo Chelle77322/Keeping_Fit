@@ -34,11 +34,11 @@ router.put("/api/workouts/:id", ({body, params}, result) => {
     });
 
 
-//router.delete("/api/workouts", ({body}, result)=> {
-//workouts.findByIDAndDelete(body.id).then(() => {
-  //  result.json(true);
-//}).catch(error => {
- //throw error;
-//});
-//});
+router.delete("/api/workouts", ({body}, result)=> {
+workouts.findByIDAndDelete(body.id).then(() => {
+   result.json(true);
+}).catch(error => {
+ throw error;
+});
+});
 module.exports = router;
