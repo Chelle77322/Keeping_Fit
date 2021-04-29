@@ -4,7 +4,7 @@ async function initWorkout() {
 
   if (prevWorkout) {
     document
-      .querySelector("a[href='/exercise?']")
+      .querySelector("a[href='/exercise']")
       .setAttribute("href", `/exercise?id=${prevWorkout._id}`);
      
 
