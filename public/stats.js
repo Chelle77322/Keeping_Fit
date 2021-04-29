@@ -4,7 +4,7 @@ fetch("/api/workouts/range").then(response =>{
 }).then(data =>{
   populateChart(data);
 });
-callAPI.getWorkoutsInRange()
+API.getWorkoutsInRange()
 
 function generatePalette() {
   const colorArray = [
