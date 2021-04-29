@@ -1,19 +1,22 @@
-const callAPI = {
-  async getPrevWorkout() {
+const API = {
+
+  // Fetching the last workout
+  async getLastWorkout() {
     let result;
     try {
       result = await fetch("/api/workouts");
     } catch (error) {
-      console.log(error)
+      console.log(err)
     }
     const json = await result.json();
-    console.log(json);
 
     return json[json.length - 1];
   },
-  //ISSUE HERE
+
+  // Add workout to existing exercise
   async addExercise(data) {
     const id = location.search.split("=")[1];
+
     const result = await fetch("/api/workouts/" + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -21,8 +24,11 @@ const callAPI = {
     });
 
     const json = await result.json();
+
     return json;
   },
+
+  // Create new workout
   async createWorkout(data = {}) {
     const result = await fetch("/api/workouts", {
       method: "POST",
@@ -31,13 +37,14 @@ const callAPI = {
     });
 
     const json = await result.json();
+
     return json;
   },
 
+  // Get workouts range
   async getWorkoutsInRange() {
     const result = await fetch(`/api/workouts/range`);
     const json = await result.json();
-    console.log("Stuff up point" ,result)
 
     return json;
   },

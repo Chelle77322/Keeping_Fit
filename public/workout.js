@@ -1,41 +1,45 @@
+// Function to initiate workout
 async function initWorkout() {
-  const prevWorkout = await callAPI.getPrevWorkout();
-  console.log("This is the previous:", prevWorkout);
-
-  if (prevWorkout) {
+  const lastWorkout = await API.getLastWorkout();
+  console.log("Last workout:", lastWorkout);
+  if (lastWorkout) {
     document
-      .querySelector("a[href='/exercise']")
-      .setAttribute("href", `/exercise?id=${prevWorkout._id}`);
-     
+      .querySelector("a[href='/exercise?']")
+      .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
-    const summaryWorkouts = {
-      date: formatDate(prevWorkout.day),
-      totalDuration: prevWorkout.totalDuration,
-      numExercises: prevWorkout.exercise.length,
-      ...tallyExercises(prevWorkout.exercises)
+    // Create last workout object  
+    const workoutSummary = {
+      date: formatDate(lastWorkout.day),
+      totalDuration: lastWorkout.totalDuration,
+      numExercises: lastWorkout.exercises.length,
+      ...tallyExercises(lastWorkout.exercises)
     };
-  
-    renderWorkoutSummary(summaryWorkouts);
-    return summaryWorkouts;
+
+    // Render last workout summary on homepage
+    renderWorkoutSummary(workoutSummary);
   } else {
     renderNoWorkoutText()
   }
 }
 
+// Function to tally exercises performed
 function tallyExercises(exercises) {
-  const tallied = exercises.reduce((access, current) => {
-    if (current.type === "resistance") {
-      access.totalWeight = (access.totalWeight || 0) + current.weight;
-      access.totalSets = (access.totalSets || 0) + current.sets;
-      access.totalReps = (access.totalReps || 0) + current.reps;
-    } else if (current.type === "cardio") {
-      access.totalDistance = (access.totalDistance || 0) + current.distance;
+  const tallied = exercises.reduce((acc, curr) => {
+    if (curr.type === "resistance") {
+      acc.totalWeight = (acc.totalWeight || 0) + curr.weight;
+      acc.totalSets = (acc.totalSets || 0) + curr.sets;
+      acc.totalReps = (acc.totalReps || 0) + curr.reps;
+      acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
+    } else if (curr.type === "cardio") {
+      acc.totalDistance = (acc.totalDistance || 0) + curr.distance;
+      acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
     }
-    return access;
+    return acc;
   }, {});
   return tallied;
 }
 
+// Function to format date
 function formatDate(date) {
   const options = {
     weekday: "long",
@@ -47,6 +51,7 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(options);
 }
 
+// Function to render workout summary on home page
 function renderWorkoutSummary(summary) {
   const container = document.querySelector(".workout-stats");
 
@@ -59,7 +64,6 @@ function renderWorkoutSummary(summary) {
     totalReps: "Total Reps Performed",
     totalDistance: "Total Distance Covered"
   };
-  
 
   Object.keys(summary).forEach(key => {
     const p = document.createElement("p");
@@ -75,6 +79,7 @@ function renderWorkoutSummary(summary) {
   });
 }
 
+// IF there is no workout recorded
 function renderNoWorkoutText() {
   const container = document.querySelector(".workout-stats");
   const p = document.createElement("p");
@@ -84,4 +89,5 @@ function renderNoWorkoutText() {
   p.appendChild(strong);
   container.appendChild(p);
 }
+
 initWorkout();
