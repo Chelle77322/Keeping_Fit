@@ -12,4 +12,4 @@ sets: Number,
 reps: Number
 });
 const exercises = mongoose.model("exercises",exercisesSchema);
-module.exports = {exercises};
+module.exports = exercises;
