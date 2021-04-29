@@ -21,8 +21,8 @@ async function initWorkout() {
   let workouts;
 
   if (location.search.split("=")[1] === undefined) {
-    workouts = await callAPI.createWorkout()
-    console.log(callAPI.createWorkout());
+    workouts = await API.createWorkout()
+    console.log(API.createWorkout());
     console.log(workouts);
   }
   if (workouts) {
@@ -116,10 +116,10 @@ async function handleFormSubmit(event) {
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
 //ISSUE HERE
-  await callAPI.addExercise(workoutData);
+  await API.addExercise(workoutData);
   clearInputs();
-  //console.log(workoutData);
-  //console.log(callAPI);
+  console.log(workoutData);
+  console.log(API);
   toast.classList.add("success");
 }
 
