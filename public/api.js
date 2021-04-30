@@ -1,9 +1,10 @@
-var workouts = [];
+
 
   // Fetching the last workout
 fetch("/api/workouts").then(response => {
+  
   return response.json();
-}).then(data =>{
+}).then(data => {
   workouts = data;
 });
 
