@@ -24,7 +24,6 @@ const API = {
     });
 
     const json = await result.json();
-
     return json;
   },
 
