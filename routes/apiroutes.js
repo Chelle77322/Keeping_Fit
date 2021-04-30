@@ -3,7 +3,7 @@ const db = require("../models/workouts");//calling the workout model directly??
 
 router.get("/api/workouts", (request, result) => {
   db.find({}).then((data) => result.json(data)).catch((error) => {
-    console.log(router);
+    console.log(result.json(data));
     throw error;
   });
 });
