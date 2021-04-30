@@ -18,7 +18,7 @@ async function initWorkout() {
     // Render last workout summary on homepage
     renderWorkoutSummary(workoutSummary);
   } else {
-    renderNoWorkoutText()
+    renderNoWorkoutText();
   }
 }
 
