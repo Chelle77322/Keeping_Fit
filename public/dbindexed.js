@@ -7,6 +7,7 @@ request.onupgradeneeded = function(event){
     const db = event.target.result;
     db.createObjectStore('new_workout', {
         autoIncrement: true });
+        console.log(db);
 };
 
 //Store reference in global db after connection is made
@@ -25,13 +26,13 @@ request.onerror = function(event){
 //Saves the transaction to indexedDB
 function saveRecord(record){
     const workout = db.workouts(['new_workout'], 'readwrite');
-const workoutObjectStore = workout.objectStore('new_workout');
-workoutObjectStore.add(record);
+const workoutsObjectStore = workouts.objectStore('new_workout');
+workoutsObjectStore.add(record);
 }
 //Uploads indexedDB data to the mongodb server when you have internet
 function uploadWorkout(){
-    const transaction = db.workout(['new_workout'], 'readwrite');
-    const workoutObjectStore = workout.objectStore('new_workout');
+    const workouts = db.workouts(['new_workout'], 'readwrite');
+    const workoutsObjectStore = workouts.objectStore('new_workout');
     const getAll = workoutObjectStore.getAll();
 }
 //IF successful; the results property will hold all the data
