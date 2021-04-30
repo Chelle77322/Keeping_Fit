@@ -5,7 +5,7 @@ const request = indexedDB.open('Keeping_Fit',1);
 //Now create the object store to store files in
 request.onupgradeneeded = function(event){
     const db = event.target.result;
-    db.createObjectStore('new_workout', {
+    db.createObjectStore('workouts', {
         autoIncrement: true });
         console.log(db);
 };
@@ -25,14 +25,14 @@ request.onerror = function(event){
 };
 //Saves the transaction to indexedDB
 function saveRecord(record){
-    const workout = db.workouts(['new_workout'], 'readwrite');
-const workoutsObjectStore = workouts.objectStore('new_workout');
+    const workout = db.workouts(['workouts'], 'readwrite');
+const workoutsObjectStore = workouts.objectStore('workouts');
 workoutsObjectStore.add(record);
 }
 //Uploads indexedDB data to the mongodb server when you have internet
 function uploadWorkout(){
-    const workouts = db.workouts(['new_workout'], 'readwrite');
-    const workoutsObjectStore = workouts.objectStore('new_workout');
+    const workouts = db.workouts(['workouts'], 'readwrite');
+    const workoutsObjectStore = workouts.objectStore('workouts');
     const getAll = workoutObjectStore.getAll();
 }
 //IF successful; the results property will hold all the data
@@ -49,8 +49,8 @@ getAll.onsuccess = function() {
             if(ServerResponse.message){
                 throw new Error(ServerResponse);
             }
-            const workouts = db.workouts(['new_workout'],'readwrite');
-            const workoutObjectStore = workouts.objectStore('new_workout');
+            const workouts = db.workouts(['workouts'],'readwrite');
+            const workoutObjectStore = workouts.objectStore('workouts');
             workoutObjectStore.clear();
             alert('All offline workouts have been submitted to the Keeping_Fit App');
         }).catch((error)=>{
