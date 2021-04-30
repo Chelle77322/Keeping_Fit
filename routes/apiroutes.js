@@ -15,24 +15,23 @@ workouts.find({}).then ((dbworkouts)=> result.json(dbworkouts)).catch((error)=>{
 });
 
 
-router.post("/api/workouts", (request,result)=>{
-  workouts.create({}).then((dbworkouts)=> result.json(dbworkouts)).catch((error)=> {
+router.post("/api/workouts", ({body},result) => {
+  workouts.create(body).then((dbworkouts) => result.json(dbworkouts)).catch((error) => {
     throw error;
   });
 
   });
 
-router.put("/api/workouts/:id", ({body, params}, result) => {
+router.put("/api/workouts/:id", ({body}, result) => {
   workouts.findByIdAndUpdate(params.id,{
     $push: {exercises: body}
   },
   //Validation check here
   {new: true, runValidatiors: true}
-    ).then ((dbworkouts) => result.json(data)).catch((error) => {
+    ).then ((dbworkouts) => result.json(dbworkouts)).catch((error) => {
       throw error;
     }); 
     });
-
 
 router.delete("/api/workouts", ({body}, result)=> {
 workouts.findByIDAndDelete(body.id).then(() => {

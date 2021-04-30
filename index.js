@@ -19,8 +19,6 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //require('./seed/seed');
-
-
 //MONGO CONNECTION
 mongoose.connect(MONGODB_URI,{
     useNewUrlParser: true,
@@ -32,4 +30,5 @@ app.use(require("./routes/apiroutes.js"));
 app.use(require("./routes/htmlroutes"));
 
 
-app.listen(PORT, ()=> console.log(`App is now listening on ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`App is now listening on ${PORT}`);});
