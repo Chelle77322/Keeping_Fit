@@ -43,5 +43,5 @@ exercises:[{
   });
  
 //Creating the mongoose model 'workouts' and exporting it for use
-
-module.exports = mongoose.model('workouts',workoutsSchema);
+const workouts = mongoose.model('workouts',workoutsSchema);
+module.exports = workouts;
