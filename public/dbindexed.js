@@ -1,11 +1,11 @@
 let db;
 //connects to the indexed db
-const request = indexedDB.open('Keeping_Fit',3);
+const request = indexedDB.open('Keeping_Fit',1);
 
 //Now create the object store to store files in
 request.onupgradeneeded = function(event){
     const db = event.target.result;
-    db.createObjectStore('workouts', {
+    db.createObjectStore('new_workouts', {
         autoIncrement: true });
         console.log(db);
 };
@@ -25,20 +25,20 @@ request.onerror = function(event){
 };
 //Saves the exercises done or workout to indexedDB
 function saveRecord(record){
-    const workouts = db.workouts(['workouts'], 'readwrite');
-const workoutsObjectStore = workouts.objectStore('workouts');
+    const workouts = db.workouts(['new_workouts'], 'readwrite');
+const workoutsObjectStore = workouts.objectStore('new_workouts');
 workoutsObjectStore.add(record);
 }
 //Uploads indexedDB data to the mongodb server when you have internet
 function uploadWorkout(){
-    const workouts = db.workouts(['workouts'], 'readwrite');
-    const workoutsObjectStore = workouts.objectStore('workouts');
+    const workouts = db.workouts(['new_workouts'], 'readwrite');
+    const workoutsObjectStore = workouts.objectStore('new_workouts');
     const getAll = workoutsObjectStore.getAll();
 
 //IF successful; the results property will hold all the data
 getAll.onsuccess = function() {
     if(getAll.result.length > 0 ){
-        fetch("/api/workouts/range", {
+        fetch("/api/workouts", {
             method: 'POST',
             body : JSON.stringify(getAll.result),
             headers: {
@@ -49,8 +49,8 @@ getAll.onsuccess = function() {
             if(ServerResponse.message){
                 throw new Error(ServerResponse);
             }
-            const workouts = db.workouts(['workouts'],'readwrite');
-            const workoutsObjectStore = workouts.objectStore('workouts');
+            const workouts = db.workouts(['new_workouts'],'readwrite');
+            const workoutsObjectStore = workouts.objectStore('new_workouts');
             workoutsObjectStore.clear();
             alert('All offline workouts have been submitted to the Keeping_Fit App');
         }).catch((error)=>{
