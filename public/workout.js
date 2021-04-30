@@ -1,11 +1,26 @@
-// Function to initiate workout
-async function initWorkout() {
-  const lastWorkout = await API.getLastWorkout();
+let workouts = [];
+
+//Loads all workouts
+fetch("/api/workouts").then(response => {
+  return response.json();
+}).then(data =>{
+  workouts = data;
+  populateWorkout();
+  tallyExercises();
+  formatDate();
+  renderNoWorkoutText();
+  renderWorkoutSummary();
+});
+
+
+//Function to initiate workout
+function populateWorkout() {
+  
+  const lastWorkout = await API.getLastWorkout(workouts);
   console.log("Last workout:", lastWorkout);
   if (lastWorkout) {
-    document
-      .querySelector("a[href='/exercise?']")
-      .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
+    document.querySelector("a[href='/exercise?']")
+    .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
     // Create last workout object  
     const workoutSummary = {
