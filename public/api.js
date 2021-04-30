@@ -1,4 +1,4 @@
-let workouts = [];
+vaar workouts = [];
 
   // Fetching the last workout
 fetch("/api/workouts").then(response => {
