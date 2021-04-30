@@ -14,9 +14,9 @@ fetch("/api/workouts").then(response => {
 
 
 //Function to initiate workout
-async function populateWorkout() {
+function populateWorkout() {
   
-  const lastWorkout = await API.getLastWorkout(workouts);
+  var lastWorkout = API.getLastWorkout(workouts);
   console.log("Last workout:", lastWorkout);
   if (lastWorkout) {
     document.querySelector("a[href='/exercise?']")
