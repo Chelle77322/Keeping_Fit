@@ -14,13 +14,13 @@ const API = {
   },
 
   // Add workout to existing exercise
-  async addExercise(data) {
+  async addExercise(dbworkouts) {
     const id = location.search.split("=")[1];
 
     const result = await fetch("/api/workouts/" + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+      body: JSON.stringify(dbworkouts)
     });
 
     const json = await result.json();
@@ -28,10 +28,10 @@ const API = {
   },
 
   // Create new workout
-  async createWorkout(data = {}) {
+  async createWorkout(dbworkouts = {}) {
     const result = await fetch("/api/workouts", {
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify(dbworkouts),
       headers: { "Content-Type": "application/json" }
     });
 

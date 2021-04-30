@@ -11,12 +11,14 @@ request.onupgradeneeded = function(event){
 
 //Store reference in global db after connection is made
 request.onsuccess = function(event){
-    db = event.target.result;
-}
+    db = request.result;
+    console.log("Database opened successfully:" + db);
+
 //Check if the app is either online or offline and upload saved to global db transactions
 if(navigator.onLine){
     uploadWorkout();
 }
+};
 request.onerror = function(event){
     console.log(event.target.errorCode);
 };
@@ -26,7 +28,7 @@ function saveRecord(record){
 const workoutObjectStore = workout.objectStore('new_workout');
 workoutObjectStore.add(record);
 }
-//Uploads indexEB data to the mongodb server when you have internet
+//Uploads indexedDB data to the mongodb server when you have internet
 function uploadWorkout(){
     const transaction = db.workout(['new_workout'], 'readwrite');
     const workoutObjectStore = workout.objectStore('new_workout');
@@ -35,7 +37,7 @@ function uploadWorkout(){
 //IF successful; the results property will hold all the data
 getAll.onsuccess = function() {
     if(getAll.result.length > 0 ){
-        fetch('/api/workout', {
+        fetch("/api/workouts", {
             method: 'POST',
             body : JSON.stringify(getAll.result),
             headers: {
@@ -46,7 +48,7 @@ getAll.onsuccess = function() {
             if(ServerResponse.message){
                 throw new Error(ServerResponse);
             }
-            const workouts = db.workout(['new_workout'],'readwrite');
+            const workouts = db.workouts(['new_workout'],'readwrite');
             const workoutObjectStore = workouts.objectStore('new_workout');
             workoutObjectStore.clear();
             alert('All offline workouts have been submitted to the Keeping_Fit App');

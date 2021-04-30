@@ -1,34 +1,34 @@
 const router = require("express").Router();
-const db = require("../models/workouts");//calling the workout model directly??
+const workouts = require("../models/workouts");//calling the workout model directly??
 
 router.get("/api/workouts", (request, result) => {
-  db.find({}).then((data) => result.json(data)).catch((error) => {
-    console.log(result.json(data));
+  workouts.find({}).then((dbworkouts) => result.json(dbworkouts)).catch((error) => {
+    console.log(result.json(dbworkouts));
     throw error;
   });
 });
 
 router.get("/api/workouts/range", (request, result)=> {
-db.find({}).then ((data)=> result.json(data)).catch((error)=>{
+workouts.find({}).then ((dbworkouts)=> result.json(dbworkouts)).catch((error)=>{
   throw error;
 });
 });
 
 
 router.post("/api/workouts", (request,result)=>{
-  db.create({}).then((data)=> result.json(data)).catch((error)=> {
+  workouts.create({}).then((dbworkouts)=> result.json(dbworkouts)).catch((error)=> {
     throw error;
   });
 
   });
 
 router.put("/api/workouts/:id", ({body, params}, result) => {
-  db.findByIdAndUpdate(params.id,{
+  workouts.findByIdAndUpdate(params.id,{
     $push: {exercises: body}
   },
   //Validation check here
   {new: true, runValidatiors: true}
-    ).then ((data) => result.json(data)).catch((error) => {
+    ).then ((dbworkouts) => result.json(data)).catch((error) => {
       throw error;
     }); 
     });
