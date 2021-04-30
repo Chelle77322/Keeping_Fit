@@ -1,8 +1,13 @@
 //Grabbing all prepopulated workout data from backend via api fetch
-fetch("/api/workouts/range").then(response => {
+let workouts = [];
+let myChart;
+fetch("/api/workouts").then(response => {
   return response.json();
 }).then(data =>{
-  populateChart(data);
+  workouts = data;
+  populateChart();
+  populateTable();
+
 });
 
 API.getWorkoutsInRange()
@@ -30,7 +35,7 @@ function generatePalette() {
   return colorArray;
 }
 
-function populateChart(data) {
+function populateChart() {
   let durations = exercise.map(({ totalDuration }) => totalDuration);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
