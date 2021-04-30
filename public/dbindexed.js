@@ -1,6 +1,6 @@
 let db;
 //connects to the indexed db
-const request = indexedDB.open('Keeping_Fit',1);
+const request = indexedDB.open('Keeping_Fit',3);
 
 //Now create the object store to store files in
 request.onupgradeneeded = function(event){
@@ -23,9 +23,9 @@ if(navigator.onLine){
 request.onerror = function(event){
     console.log(event.target.errorCode);
 };
-//Saves the transaction to indexedDB
+//Saves the exercises done or workout to indexedDB
 function saveRecord(record){
-    const workout = db.workouts(['workouts'], 'readwrite');
+    const workouts = db.workouts(['workouts'], 'readwrite');
 const workoutsObjectStore = workouts.objectStore('workouts');
 workoutsObjectStore.add(record);
 }
@@ -33,12 +33,12 @@ workoutsObjectStore.add(record);
 function uploadWorkout(){
     const workouts = db.workouts(['workouts'], 'readwrite');
     const workoutsObjectStore = workouts.objectStore('workouts');
-    const getAll = workoutObjectStore.getAll();
-}
+    const getAll = workoutsObjectStore.getAll();
+
 //IF successful; the results property will hold all the data
 getAll.onsuccess = function() {
     if(getAll.result.length > 0 ){
-        fetch("/api/workouts", {
+        fetch("/api/workouts/range", {
             method: 'POST',
             body : JSON.stringify(getAll.result),
             headers: {
@@ -50,12 +50,13 @@ getAll.onsuccess = function() {
                 throw new Error(ServerResponse);
             }
             const workouts = db.workouts(['workouts'],'readwrite');
-            const workoutObjectStore = workouts.objectStore('workouts');
-            workoutObjectStore.clear();
+            const workoutsObjectStore = workouts.objectStore('workouts');
+            workoutsObjectStore.clear();
             alert('All offline workouts have been submitted to the Keeping_Fit App');
         }).catch((error)=>{
             console.log(error);
         });
     }
+}
 }
 window.addEventListener('online', uploadWorkout);
