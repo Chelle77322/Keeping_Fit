@@ -14,7 +14,7 @@ fetch("/api/workouts").then(response => {
 
 
 //Function to initiate workout
-function populateWorkout() {
+async function populateWorkout() {
   
   const lastWorkout = await API.getLastWorkout(workouts);
   console.log("Last workout:", lastWorkout);
