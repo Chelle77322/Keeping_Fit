@@ -105,4 +105,4 @@ function renderNoWorkoutText() {
   container.appendChild(p);
 }
 
-initWorkout();
+populateWorkout();
