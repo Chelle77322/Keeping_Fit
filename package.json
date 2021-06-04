@@ -1,5 +1,5 @@
 {
-  "name": "mongoose_skeleton",
+  "name": "keeping_fit",
   "version": "1.0.0",
   "description": "A fitness tracker app that allows you to keep track of your workouts",
   "main": "index.js",
@@ -9,8 +9,8 @@
     "watch": "nodemon index.js",
     "seed": "node seeders/seed.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Michelle Hall",
+  "license": "GNU",
   "dependencies": {
     "express": "^4.16.3",
     "mongoose": "^5.3.16",

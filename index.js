@@ -6,7 +6,7 @@ const Workouts = require("./models/workouts");
 const seed = require("./seeders/seed");
 
 const PORT = process.env.PORT || 3333;
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/Keeping_Fit";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/Fitness";
 
 
 const app = express();
