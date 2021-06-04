@@ -23,7 +23,7 @@ require("./routes/htmlroutes")(app);
 
 
 mongoose.connect(process.env.MONGODB_URI ||
-    "mongodb+srv://keeping_fit-admin:m*AB$!el99@workouts.a1ska.mongodb.net/keeping_fit?retryWrites=true&w=majority",
+    "mongodb+srv://keeping_fit-admin:m*AB$!el99@workouts.a1ska.mongodb.net/workouts?retryWrites=true&w=majority",
     {useNewUrlParser: true});
 
 app.listen(PORT, () => {
