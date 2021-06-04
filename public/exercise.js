@@ -18,25 +18,23 @@ let workoutType = null;
 let shouldNavigateAway = false;
 
 async function initExercise() {
-  let workouts;
+  let workout;
 
   if (location.search.split("=")[1] === undefined) {
-    workouts = await API.createWorkout()
-    console.log(API.createWorkout());
-    console.log(workouts);
+    workout = await API.createWorkout()
+    console.log(workout)
   }
-  if (workouts) {
-    location.search = "?id=" + workouts._id;
+  if (workout) {
+    location.search = "?id=" + workout._id;
   }
 
 }
 
 initExercise();
-//Checks to see what workout is chosen and returns accordingly
 
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
-  
+
   if (workoutType === "cardio") {
     cardioForm.classList.remove("d-none");
     resistanceForm.classList.add("d-none");
@@ -50,7 +48,7 @@ function handleWorkoutTypeChange(event) {
 
   validateInputs();
 }
-//Validates the user input against the conditions set
+
 function validateInputs() {
   let isValid = true;
 
@@ -70,12 +68,11 @@ function validateInputs() {
     if (repsInput.value.trim() === "") {
       isValid = false;
     }
-   
+
     if (resistanceDurationInput.value.trim() === "") {
       isValid = false;
     }
-
-    } else if (workoutType === "cardio") {
+  } else if (workoutType === "cardio") {
     if (cardioNameInput.value.trim() === "") {
       isValid = false;
     }
@@ -83,6 +80,7 @@ function validateInputs() {
     if (durationInput.value.trim() === "") {
       isValid = false;
     }
+
     if (distanceInput.value.trim() === "") {
       isValid = false;
     }
@@ -99,7 +97,7 @@ function validateInputs() {
 
 async function handleFormSubmit(event) {
   event.preventDefault();
-//Allows the value of workoutData to be stored in the object array {}
+
   let workoutData = {};
 
   if (workoutType === "cardio") {
@@ -115,7 +113,7 @@ async function handleFormSubmit(event) {
     workoutData.reps = Number(repsInput.value.trim());
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
-//ISSUE HERE
+
   await API.addExercise(workoutData);
   clearInputs();
   toast.classList.add("success");
@@ -127,7 +125,7 @@ function handleToastAnimationEnd() {
     location.href = "/";
   }
 }
-//Sets everything back on the form to blank ( exluding placeholders)
+
 function clearInputs() {
   cardioNameInput.value = "";
   nameInput.value = "";

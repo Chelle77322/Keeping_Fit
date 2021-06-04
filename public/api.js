@@ -1,46 +1,43 @@
-
-
-  // Fetching the last workout
-fetch("/api/workouts").then(response => {
-  
-  return response.json();
-}).then(data => {
-  workouts = data;
-});
-
 const API = {
+  async getLastWorkout() {
+    let res;
+    try {
+      res = await fetch("/api/workouts");
+    } catch (err) {
+      console.log(err)
+    }
+    const json = await res.json();
 
-  // Add workout to existing exercise
-  async addExercise(dbworkouts) {
+    return json[json.length - 1];
+  },
+  async addExercise(data) {
     const id = location.search.split("=")[1];
 
-    const result = await fetch("/api/workouts/" + id, {
+    const res = await fetch("/api/workouts/" + id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dbworkouts)
+      body: JSON.stringify(data)
     });
 
-    const json = await result.json();
+    const json = await res.json();
+
     return json;
   },
-
-  // Create new workout
-  async createWorkout(dbworkouts = {}) {
-    const result = await fetch("/api/workouts", {
+  async createWorkout(data = {}) {
+    const res = await fetch("/api/workouts", {
       method: "POST",
-      body: JSON.stringify(dbworkouts),
+      body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
     });
 
-    const json = await result.json();
+    const json = await res.json();
 
     return json;
   },
 
-  // Get workouts range
   async getWorkoutsInRange() {
-    const result = await fetch(`/api/workouts/range`);
-    const json = await result.json();
+    const res = await fetch(`/api/workouts/range`);
+    const json = await res.json();
 
     return json;
   },

@@ -1,47 +1,42 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
-//Create new workout schema
-
-const workoutsSchema = new Schema (
-  {
+const WorkoutsSchema = new Schema({
+  date: {
+    type: Date,
+    required: true
+  },
   day: {
-  type: Date,
-  default: Date.now(),
-},
-exercises:[{
-  name : {
-    type : String,
-    trim : true,
-    required : "Enter the name of exercise completed"
+    type: Number
   },
-  type : {
-    type: String,
-    trim : true,
-    required : "Enter the type of exercise completed"
+
+  exercises: {
+    type: Array,
+    default: undefined,
+    duration: {
+      type: Number
+    }
+    
   },
-  distance : {
-    type : Number
-  },
-  duration : {
-    type : Number,
-    required : "Enter in minutes how long the exercise was performed"
-  },
-  weight: {
-    type : Number
-  },
-  sets: {
-    type : Number
-  },
-  reps: {
-    type : Number
+
+  totalDuration: {
+    type: Number,
+    default: 0
   }
- 
-}
-]
+
+});
+
+WorkoutsSchema.methods.getTotalDuration = async function() {
+  this.totalDuration = 0;
+  this.exercises.forEach(element => {
+    this.totalDuration += Number(element.duration);
+    //console.log("T DURATE:", this.totalDuration);
   });
- 
-//Creating the mongoose model 'workouts' and exporting it for use
-const workouts = mongoose.model('workouts',workoutsSchema);
-module.exports = workouts;
+
+  return Number(this.totalDuration);
+
+}
+
+const Workouts = mongoose.model("Workouts", WorkoutsSchema);
+
+module.exports = Workouts;

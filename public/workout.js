@@ -1,60 +1,38 @@
-let workouts = [];
-
-//Loads all workouts
-fetch("/api/workouts").then(response => {
-  return response.json();
-}).then(data =>{
-  workouts = data;
-  populateWorkout();
-  tallyExercises();
-  formatDate();
-  renderNoWorkoutText();
-  renderWorkoutSummary();
-});
-
-
-//Function to initiate workout
-function populateWorkout() {
-  
-  var lastWorkout = API.getLastWorkout(workouts);
-  console.log("Last workout:", lastWorkout);
+async function initWorkout() {
+  const lastWorkout = await API.getLastWorkout();
+  console.log("Total dur workout:", lastWorkout.totalDuration);
   if (lastWorkout) {
-    document.querySelector("a[href='/exercise?']")
-    .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
+    document
+      .querySelector("a[href='/exercise?']")
+      .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
-    // Create last workout object  
     const workoutSummary = {
-      date: formatDate(lastWorkout.day),
+      date: formatDate(lastWorkout.date),
       totalDuration: lastWorkout.totalDuration,
       numExercises: lastWorkout.exercises.length,
       ...tallyExercises(lastWorkout.exercises)
     };
 
-    // Render last workout summary on homepage
     renderWorkoutSummary(workoutSummary);
   } else {
-    renderNoWorkoutText();
+    renderNoWorkoutText()
   }
 }
 
-// Function to tally exercises performed
 function tallyExercises(exercises) {
   const tallied = exercises.reduce((acc, curr) => {
     if (curr.type === "resistance") {
       acc.totalWeight = (acc.totalWeight || 0) + curr.weight;
       acc.totalSets = (acc.totalSets || 0) + curr.sets;
       acc.totalReps = (acc.totalReps || 0) + curr.reps;
-      acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
     } else if (curr.type === "cardio") {
       acc.totalDistance = (acc.totalDistance || 0) + curr.distance;
-      acc.totalDuration = (acc.totalDuration || 0) + curr.duration;
     }
     return acc;
   }, {});
   return tallied;
 }
 
-// Function to format date
 function formatDate(date) {
   const options = {
     weekday: "long",
@@ -66,7 +44,6 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(options);
 }
 
-// Function to render workout summary on home page
 function renderWorkoutSummary(summary) {
   const container = document.querySelector(".workout-stats");
 
@@ -94,7 +71,6 @@ function renderWorkoutSummary(summary) {
   });
 }
 
-// IF there is no workout recorded
 function renderNoWorkoutText() {
   const container = document.querySelector(".workout-stats");
   const p = document.createElement("p");
@@ -105,4 +81,4 @@ function renderNoWorkoutText() {
   container.appendChild(p);
 }
 
-populateWorkout();
+initWorkout();
