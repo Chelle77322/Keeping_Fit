@@ -4,8 +4,6 @@ let Workout = require("../models/workouts");
 module.exports = function(){
   var d = new Date();
   
-
-
 let workoutSeed = [
   {
     date: new Date(new Date().setDate(new Date().getDate()-8)),

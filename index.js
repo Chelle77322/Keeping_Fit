@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const compression = require("compression");
 const logger = require("morgan");
 const Workouts = require("./models/workouts");
-const seed = require("./seed/seed");
+const seed = require("./seeders/seed");
 
 const PORT = process.env.PORT || 3333;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/Keeping_Fit";
