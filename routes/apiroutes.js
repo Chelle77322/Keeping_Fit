@@ -42,7 +42,7 @@ module.exports = function (app) {
     });
 
        //get all workouts
-       app.get("/api/workouts/range", async (request, result) => {
+       app.get(".api/workouts", async (request, result) => {
         var sunday = new Date(new Date().setDate(new Date().getDate() - d.getDay())).setHours(00, 00, 00);
         console.log("sunday", sunday);
         try{

@@ -4,32 +4,27 @@ const compression = require("compression");
 const logger = require("morgan");
 const Workouts = require("./models/workouts");
 const seed = require("./seed/seed");
-
-
 const PORT = process.env.PORT || 3333;
-const MONGODB_URI = process.env.MONGODB_URI ||"mongodb://localhost/Keeping_Fit";
+
 
 const app = express();
-
 app.use(logger("dev"));
 
 app.use(compression());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-
-
 app.use(express.static("public"));
 
-//MONGO CONNECTION
-mongoose.connect(MONGODB_URI,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-});
-//ROUTES
-app.use(require("./routes/apiroutes.js"));
-app.use(require("./routes/htmlroutes"));
 
+
+//ROUTES
+require("./routes/apiroutes")(app);
+require("./routes/htmlroutes")(app);
+
+
+mongoose.connect(process.env.MONGODB_URI ||
+    "mongodb+srv://keeping_fit-admin:m*AB$!el99@workouts.a1ska.mongodb.net/keeping_fit?retryWrites=true&w=majority",
+    {useNewUrlParser: true});
 
 app.listen(PORT, () => {
     console.log(`🏃‍♀️ 🏃‍♀️ App is now listening on ${PORT}🏃‍♀️ 🏃‍♀️ `);});
