@@ -4,7 +4,9 @@ const compression = require("compression");
 const logger = require("morgan");
 const Workouts = require("./models/workouts");
 const seed = require("./seed/seed");
+
 const PORT = process.env.PORT || 3333;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/Keeping_Fit";
 
 
 const app = express();
@@ -22,9 +24,10 @@ require("./routes/apiroutes")(app);
 require("./routes/htmlroutes")(app);
 
 
-mongoose.connect(process.env.MONGODB_URI ||
-    "mongodb+srv://keeping_fit-admin:m*AB$!el99@workouts.a1ska.mongodb.net/workouts?retryWrites=true&w=majority",
-    {useNewUrlParser: true});
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useFindAndModify: false
+});
 
 app.listen(PORT, () => {
     console.log(`🏃‍♀️ 🏃‍♀️ App is now listening on ${PORT}🏃‍♀️ 🏃‍♀️ `);});
