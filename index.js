@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const compression = require("compression");
 const logger = require("morgan");
+const Workouts = require("./models/workouts");
+const seed = require("./seed/seed");
 
 
 const PORT = process.env.PORT || 3333;
@@ -18,7 +20,6 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-//require('./seed/seed');
 //MONGO CONNECTION
 mongoose.connect(MONGODB_URI,{
     useNewUrlParser: true,

@@ -8,50 +8,50 @@ var d = new Date();
 
 module.exports = function (app) {
     //get all workouts
-    app.get("/api/workouts", (req, res) => {
+    app.get("/api/workouts", (request, result) => {
         Workouts.find({}).sort({date: 1}).then(data => {
-            res.json(data);
-        }).catch(err => { 
-            console.log(err);
+            result.json(data);
+        }).catch(error => { 
+            console.log(error);
         });
     });
     
-    app.put("/api/workouts/:id", async (req, res) => {
-        console.log("PUT ID", req.params.id);
+    app.put("/api/workouts/:id", async (request, result) => {
+        console.log("PUT ID", request.params.id);
         //NEED TO INCLUDE ALL OF EXERCISE 
         try{
-       var addExcercise =  await Workouts.findByIdAndUpdate({_id: req.params.id}, {$set: {day: d.getDay(), date: Date.now()}, $push: {exercises: req.body}}, {new: true});
-            addExcercise.getTotalDuration();
-            console.log("update", addExcercise);
-        var addTotalDur = await Workouts.findByIdAndUpdate({_id: req.params.id}, {$set: {totalDuration: addExcercise.totalDuration}}, {new: true})
+       var addExercise =  await Workouts.findByIdAndUpdate({_id: reqest.params.id}, {$set: {day: d.getDay(), date: Date.now()}, $push: {exercises: req.body}}, {new: true});
+            addExercise.getTotalDuration();
+            console.log("update", addExercise);
+        var addTotalDur = await Workouts.findByIdAndUpdate({_id: request.params.id}, {$set: {totalDuration: addExercise.totalDuration}}, {new: true})
             console.log(addTotalDur, "update after");
-            res.json(addTotalDur);
+            result.json(addTotalDur);
         }
-        catch(err){
-            console.log(err)
+        catch(error){
+            console.log(error)
         }
        
     });
     //Create new workout
-    app.post("/api/workouts", (req, res) => {
+    app.post("/api/workouts", (request, result) => {
         Workouts.create({date: Date.now(), day: d.getDay()}).then(data => {
-            res.json(data);
-        }).catch(err => { 
-            console.log(err);
+            result.json(data);
+        }).catch(error => { 
+            console.log(error);
         });
     });
 
        //get all workouts
-       app.get("/api/workouts/range", async (req, res) => {
+       app.get("/api/workouts/range", async (request, result) => {
         var sunday = new Date(new Date().setDate(new Date().getDate() - d.getDay())).setHours(00, 00, 00);
         console.log("sunday", sunday);
         try{
             const data = await Workouts.find({date: {$gte: sunday}}).sort({date: 1});
                 console.log(data);
-                res.json(data);
+                result.json(data);
             }
-        catch(err){
-                throw err; 
+        catch(error){
+                throw error; 
             }
         })
     
