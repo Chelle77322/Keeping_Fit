@@ -9,10 +9,19 @@ var d = new Date();
 module.exports = function (app) {
     //get all workouts
     app.get("/api/workouts", (request, result) => {
-        Workouts.find({}).sort({date: 1}).then(data => {
+        Workouts.find().sort({date: 1}).then(data => {
             result.json(data);
         }).catch(error => { 
-            console.log(error);
+            result.json(error);
+        });
+    });
+    app.get("/api/workouts/range", async(request, result) => {
+        Workouts.find().then((data) =>
+        {
+            result.json(data);
+        })
+        .catch((error)=> {
+            result.json(error);
         });
     });
     
@@ -20,7 +29,7 @@ module.exports = function (app) {
         console.log("PUT ID", request.params.id);
         //NEED TO INCLUDE ALL OF EXERCISE 
         try{
-       var addExercise =  await Workouts.findByIdAndUpdate({_id: reqest.params.id}, {$set: {day: d.getDay(), date: Date.now()}, $push: {exercises: req.body}}, {new: true});
+       var addExercise =  await Workouts.findByIdAndUpdate({_id: request.params.id}, {$set: {day: d.getDay(), date: Date.now()}, $push: {exercises: request.body}}, {new: true});
             addExercise.getTotalDuration();
             console.log("update", addExercise);
         var addTotalDur = await Workouts.findByIdAndUpdate({_id: request.params.id}, {$set: {totalDuration: addExercise.totalDuration}}, {new: true})

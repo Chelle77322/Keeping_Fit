@@ -30,7 +30,7 @@ WorkoutsSchema.methods.getTotalDuration = async function() {
   this.totalDuration = 0;
   this.exercises.forEach(element => {
     this.totalDuration += Number(element.duration);
-    //console.log("T DURATE:", this.totalDuration);
+    console.log("T DURATE:", this.totalDuration);
   });
 
   return Number(this.totalDuration);
