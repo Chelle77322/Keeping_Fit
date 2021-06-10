@@ -11,6 +11,7 @@
 - [License](#license)
 - [Contributing](#contributing)
 - [Tests](#tests)
+- [Issues(#issues)
 - [Questions](#questions)
 ## Installation
 💻 
@@ -23,7 +24,9 @@ This application is covered by the GNU license.
 ## Contributing
 🙋‍♀️Michelle Hall
 ## Tests
- Yes
+ No
+## Issues
+There is unfortunately issues with the stats not rendering in the graphs as required. Information is returned from the API calls and can be console logged as well. It will jsut not populate onto the stats.html page.
 ## Questions
 🤔 If you have any questions in regard to this project , please don't hesitate to reach out<br />
 <br />
