@@ -1,9 +1,9 @@
 
-<h1 align="center">Keeping Fit: Fitness Tracker</h1>
+<h1 align="center">Keeping Fit Fitness Tracker</h1>
   
-![badge](https://img.shields.io/badge/license-Apache-brightgreen)<br />
+![badge](https://img.shields.io/badge/license-GNU-brightgreen)<br />
 ## Description
-ℹ️ An interactive fitness tracker app that keeps a record of your workouts
+ℹ️ A fitness tracker for the Healthy Person
 ## Table of Contents
 - [Description](#description)
 - [Installation](#installation)
@@ -13,19 +13,19 @@
 - [Tests](#tests)
 - [Questions](#questions)
 ## Installation
-💻 npm install, npm install mongoose, npm istall morgan, npm install compression, npm install dotenv
+💻 
 ## Usage
-📖Keeping Fit: Fitness Tracker can be used freely under Creative Commons Licensing
+📖Keeping Fit Fitness Tracker can be used with appropriate acknowledgement under the Creative Commons Licensing
 ## License
-![badge](https://img.shields.io/badge/license-Apache-brightgreen)
+![badge](https://img.shields.io/badge/license-GNU-brightgreen)
 <br />
-This application is covered by the Apache license. 
+This application is covered by the GNU license. 
 ## Contributing
 🙋‍♀️Michelle Hall
 ## Tests
  Yes
 ## Questions
-🤔 If you have any questions in regard to the usage of this project or future developments please contact me<br />
+🤔 If you have any questions in regard to this project , please don't hesitate to reach out<br />
 <br />
 🖐️ Find me on GitHub: [Chelle77322](https://github.com/Chelle77322)<br />
 <br />

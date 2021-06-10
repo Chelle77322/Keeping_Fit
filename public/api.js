@@ -4,7 +4,7 @@ const API = {
     try {
       result = await fetch("/api/workouts");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
     const json = await result.json();
 
